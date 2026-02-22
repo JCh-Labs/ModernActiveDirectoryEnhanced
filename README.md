@@ -24,27 +24,19 @@ Use at your own risk
 
 ## 🔍 Présentation
 
-**ModernActiveDirectoryEnhanced** est un fork amélioré du module *Modern Active Directory*.
-
-Ce module PowerShell permet de :
-- Auditer un Active Directory
-- Générer des rapports HTML interactifs
-- Exporter des données AD vers Excel
-- Suivre l'état End-of-Life (EoL) des systèmes d'exploitation
-
----
+**ModernActiveDirectoryEnhanced** 
+> est un fork amélioré de [Modern Active Directory](https://github.com/dakhama-mehdi/Modern_ActiveDirectory)
+> par [Mehdi Dakhama](https://github.com/dakhama-mehdi)
 
 ## 🚀 Nouveautés version 2.0.0 (Enhanced)
 
 - Nouveau nom de module : **ModernActiveDirectoryEnhanced**
 - Fonction principale renommée : **Get-MADReport**
-- Nouveau GUID et manifeste complet mis à jour
-- **Moteur EoL intégré** : suivi Windows, Windows Server, Linux, macOS
+- **Moteur EoL intégré** : suivi Windows, Windows Server, Linux, macOS, ...
 - Base de données JSON externe (`eol-database.json`) synchronisable via API [endoflife.date](https://endoflife.date)
 - Nouvelle fonction : **Update-ADEoLDatabase** / alias **Update-EoL**
 - Fonctions de pré-vérification : `PreCheck-Functions.ps1`
-- Suppression de la signature de code obsolète
-- Structure nettoyée et refactorisée
+- Structure nettoyée et refactorisée sans hardcode
 
 ---
 
@@ -57,12 +49,8 @@ Ce module PowerShell permet de :
 - **PSWriteExcel** ≥ 0.1.15
 
 ---
-
-## 📦 Installation :
-
-
 ###
-### Installation depuis Powershell Gallery
+### 📦 Installation depuis Powershell Gallery
 ###
 
 # Importer le module
