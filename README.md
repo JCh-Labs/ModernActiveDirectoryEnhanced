@@ -11,12 +11,9 @@ Use at your own risk
 ![PowerShell Gallery Downloads](https://img.shields.io/powershellgallery/dt/ModernActiveDirectoryEnhanced?color=orange&label=Download%20Powershell%20Gallery)
 
 
-
-
-
-
 # ModernActiveDirectoryEnhanced
 ### Version 2.0.0 – Enhanced Fork by JCh
+![Logo](Pictures/Logo.png "Logo")
 
 > 🔁 Fork amélioré de [Modern Active Directory](https://github.com/dakhama-mehdi/Modern_ActiveDirectory)
 > par [Mehdi Dakhama](https://github.com/dakhama-mehdi) — étendu avec un moteur EoL complet.
