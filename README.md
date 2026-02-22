@@ -22,7 +22,7 @@ Use at your own risk
 
 ---
 
-## 🔍 Présentation
+# 🔍 Présentation
 
 **ModernActiveDirectoryEnhanced** 
 > est un fork amélioré de [Modern Active Directory](https://github.com/dakhama-mehdi/Modern_ActiveDirectory)
@@ -40,7 +40,7 @@ Use at your own risk
 
 ---
 
-## 🛠️ Prérequis
+# 🛠️ Prérequis
 
 - Windows Server ou Windows 10/11
 - PowerShell 5.1+
@@ -49,6 +49,7 @@ Use at your own risk
 - **PSWriteExcel** ≥ 0.1.15
 
 ---
+
 # 📦 Installation depuis Powershell Gallery
 
 
@@ -57,25 +58,26 @@ Use at your own risk
 Import-Module ModernActiveDirectoryEnhanced
 ```
 
-# Vérifier l'import
+### Vérifier l'import
 ```powershell
 Get-Module ModernActiveDirectoryEnhanced
 ```
 
-###
-### Installation depuis GitHub
-###
+---
 
-# Cloner le dépôt
+# Installation depuis GitHub
+
+
+### Cloner le dépôt
 ```powershell
 git clone https://github.com/JCh-Labs/Modern_ActiveDirectoryEnhanced/Modern_ActiveDirectory_Enhanced.git
 ```
 
-# Importer le module
+### Importer le module
 ```powershell
 Import-Module .\Modern_ActiveDirectory_Enhanced\ModernActiveDirectoryEnhanced.psd1
 ```
-# Vérifier l'import
+### Vérifier l'import
 ```powershell
 Get-Module ModernActiveDirectoryEnhanced
 ```
@@ -84,16 +86,16 @@ Get-Module ModernActiveDirectoryEnhanced
 ```
 
 ---
-###
-## 🧪 Utilisation
-###
 
-# PreCheck
+# 🧪 Utilisation
+
+
+### PreCheck
 ```powershell
 Get-MADReport -PreCheck
 ```
 
-# MAJ de la Database eol
+### MAJ de la Database eol
 ```powershell
 Update-ADEoLDatabase
 # ou via alias :
@@ -115,7 +117,7 @@ Get-MADReport -ReportTitle "v1.9.9.02 : Overview AD Report" -SavePath "C:\Temp\O
 
 ---
 
-## 🧩 Fonctionnalités
+# 🧩 Fonctionnalités
 
 - 🔎 Analyse complète de l'Active Directory
 - 📊 Rapport HTML interactif (PSWriteHTML)
@@ -127,7 +129,7 @@ Get-MADReport -ReportTitle "v1.9.9.02 : Overview AD Report" -SavePath "C:\Temp\O
 
 ---
 
-## 📁 Structure du projet
+# 📁 Structure du projet
 
 ```
 ModernActiveDirectoryEnhanced/
@@ -147,7 +149,7 @@ ModernActiveDirectoryEnhanced/
 
 ---
 
-## 🧑‍💻 Auteur
+# 🧑‍💻 Auteur
 
 **JCh** — JCh Labs, 2026
 [github.com/JCh-Labs](https://github.com/JCh-Labs/)
