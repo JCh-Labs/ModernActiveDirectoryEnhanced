@@ -1,0 +1,1684 @@
+﻿{
+    "metadata":  {
+                     "version":  "1.0",
+                     "last_updated":  "2026-02-22",
+                     "last_api_update":  "2026-02-22 15:36:31",
+                     "source":  "endoflife.date API"
+                 },
+    "os_database":  {
+                        "Windows 10 1809":  {
+                                                "version":  "10",
+                                                "api_product":  "ad-detected",
+                                                "extended_support":  null,
+                                                "eol_date":  null,
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_cycle":  "unknown"
+                                            },
+                        "Windows 10 21H2":  {
+                                                "version":  "10",
+                                                "api_product":  "ad-detected",
+                                                "extended_support":  null,
+                                                "eol_date":  null,
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_cycle":  "unknown"
+                                            },
+                        "Windows 10 1909":  {
+                                                "version":  "10",
+                                                "api_product":  "ad-detected",
+                                                "extended_support":  null,
+                                                "eol_date":  null,
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_cycle":  "unknown"
+                                            },
+                        "Windows 11 21H2":  {
+                                                "version":  "11",
+                                                "api_product":  "ad-detected",
+                                                "extended_support":  null,
+                                                "eol_date":  null,
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_cycle":  "unknown"
+                                            },
+                        "Windows 11 23H2":  {
+                                                "version":  "11",
+                                                "api_product":  "ad-detected",
+                                                "extended_support":  null,
+                                                "eol_date":  null,
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_cycle":  "unknown"
+                                            },
+                        "Windows 11 22H2":  {
+                                                "version":  "11",
+                                                "api_product":  "ad-detected",
+                                                "extended_support":  null,
+                                                "eol_date":  null,
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_cycle":  "unknown"
+                                            },
+                        "Windows 11 24H2":  {
+                                                "version":  "11",
+                                                "api_product":  "ad-detected",
+                                                "extended_support":  null,
+                                                "eol_date":  null,
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_cycle":  "unknown"
+                                            },
+                        "Windows 10-1607-e-lts":  {
+                                                      "version":  "10-1607-e-lts",
+                                                      "eol_date":  "2026-10-13",
+                                                      "extended_support":  null,
+                                                      "api_cycle":  "10-1607-e-lts",
+                                                      "type":  "client",
+                                                      "product_name":  "Windows",
+                                                      "api_product":  "windows"
+                                                  },
+                        "Windows 10-1803-e":  {
+                                                  "version":  "10-1803-e",
+                                                  "eol_date":  "2021-05-11",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1803-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 11-25h2-w":  {
+                                                  "version":  "11-25h2-w",
+                                                  "eol_date":  "2027-10-12",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-25h2-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1507":  {
+                                                "version":  "10-1507",
+                                                "eol_date":  "2017-05-09",
+                                                "extended_support":  null,
+                                                "api_cycle":  "10-1507",
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_product":  "windows"
+                                            },
+                        "Windows 11-25h2-e":  {
+                                                  "version":  "11-25h2-e",
+                                                  "eol_date":  "2028-10-10",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-25h2-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1607-w":  {
+                                                  "version":  "10-1607-w",
+                                                  "eol_date":  "2018-04-10",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1607-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1909-e":  {
+                                                  "version":  "10-1909-e",
+                                                  "eol_date":  "2022-05-10",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1909-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 6-sp2":  {
+                                              "version":  "6-sp2",
+                                              "eol_date":  "2017-04-11",
+                                              "extended_support":  null,
+                                              "api_cycle":  "6-sp2",
+                                              "type":  "client",
+                                              "product_name":  "Windows",
+                                              "api_product":  "windows"
+                                          },
+                        "Windows 11-23h2-w":  {
+                                                  "version":  "11-23h2-w",
+                                                  "eol_date":  "2025-11-11",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-23h2-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1507-iot":  {
+                                                    "version":  "10-1507-iot",
+                                                    "eol_date":  "2020-11-10",
+                                                    "extended_support":  null,
+                                                    "api_cycle":  "10-1507-iot",
+                                                    "type":  "client",
+                                                    "product_name":  "Windows",
+                                                    "api_product":  "windows"
+                                                },
+                        "Windows 10-1703-w":  {
+                                                  "version":  "10-1703-w",
+                                                  "eol_date":  "2018-10-09",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1703-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1903":  {
+                                                "version":  "10-1903",
+                                                "eol_date":  "2020-12-08",
+                                                "extended_support":  null,
+                                                "api_cycle":  "10-1903",
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_product":  "windows"
+                                            },
+                        "Windows 10-1809-e-lts":  {
+                                                      "version":  "10-1809-e-lts",
+                                                      "eol_date":  "2029-01-09",
+                                                      "extended_support":  null,
+                                                      "api_cycle":  "10-1809-e-lts",
+                                                      "type":  "client",
+                                                      "product_name":  "Windows",
+                                                      "api_product":  "windows"
+                                                  },
+                        "Windows 10-22h2":  {
+                                                "version":  "10-22h2",
+                                                "eol_date":  "2025-10-14",
+                                                "extended_support":  "2028-10-10",
+                                                "api_cycle":  "10-22h2",
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_product":  "windows"
+                                            },
+                        "Windows 10-1909-w":  {
+                                                  "version":  "10-1909-w",
+                                                  "eol_date":  "2021-05-11",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1909-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 11-24h2-e":  {
+                                                  "version":  "11-24h2-e",
+                                                  "eol_date":  "2027-10-12",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-24h2-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 8.1":  {
+                                            "version":  "8.1",
+                                            "eol_date":  "2023-01-10",
+                                            "extended_support":  null,
+                                            "api_cycle":  "8.1",
+                                            "type":  "client",
+                                            "product_name":  "Windows",
+                                            "api_product":  "windows"
+                                        },
+                        "Windows 11-26h1-e":  {
+                                                  "version":  "11-26h1-e",
+                                                  "eol_date":  "2029-03-13",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-26h1-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1803-w":  {
+                                                  "version":  "10-1803-w",
+                                                  "eol_date":  "2019-11-12",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1803-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1709-e":  {
+                                                  "version":  "10-1709-e",
+                                                  "eol_date":  "2020-10-13",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1709-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 11-24h2-w":  {
+                                                  "version":  "11-24h2-w",
+                                                  "eol_date":  "2026-10-13",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-24h2-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 7-sp1":  {
+                                              "version":  "7-sp1",
+                                              "eol_date":  "2020-01-14",
+                                              "extended_support":  null,
+                                              "api_cycle":  "7-sp1",
+                                              "type":  "client",
+                                              "product_name":  "Windows",
+                                              "api_product":  "windows"
+                                          },
+                        "Windows 10-1507-e-lts":  {
+                                                      "version":  "10-1507-e-lts",
+                                                      "eol_date":  "2025-10-14",
+                                                      "extended_support":  null,
+                                                      "api_cycle":  "10-1507-e-lts",
+                                                      "type":  "client",
+                                                      "product_name":  "Windows",
+                                                      "api_product":  "windows"
+                                                  },
+                        "Windows 10-1809-w":  {
+                                                  "version":  "10-1809-w",
+                                                  "eol_date":  "2020-11-10",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1809-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 5-sp3":  {
+                                              "version":  "5-sp3",
+                                              "eol_date":  "2014-04-08",
+                                              "extended_support":  null,
+                                              "api_cycle":  "5-sp3",
+                                              "type":  "client",
+                                              "product_name":  "Windows",
+                                              "api_product":  "windows"
+                                          },
+                        "Windows 11-24h2-iot-lts":  {
+                                                        "version":  "11-24h2-iot-lts",
+                                                        "eol_date":  "2034-10-10",
+                                                        "extended_support":  null,
+                                                        "api_cycle":  "11-24h2-iot-lts",
+                                                        "type":  "client",
+                                                        "product_name":  "Windows",
+                                                        "api_product":  "windows"
+                                                    },
+                        "Windows 11-22h2-w":  {
+                                                  "version":  "11-22h2-w",
+                                                  "eol_date":  "2024-10-08",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-22h2-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-21h2-w":  {
+                                                  "version":  "10-21h2-w",
+                                                  "eol_date":  "2023-06-13",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-21h2-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1703-e":  {
+                                                  "version":  "10-1703-e",
+                                                  "eol_date":  "2019-10-08",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1703-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-2004":  {
+                                                "version":  "10-2004",
+                                                "eol_date":  "2021-12-14",
+                                                "extended_support":  null,
+                                                "api_cycle":  "10-2004",
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_product":  "windows"
+                                            },
+                        "Windows 11-26h1-w":  {
+                                                  "version":  "11-26h1-w",
+                                                  "eol_date":  "2028-03-14",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-26h1-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 11-24h2-e-lts":  {
+                                                      "version":  "11-24h2-e-lts",
+                                                      "eol_date":  "2029-10-09",
+                                                      "extended_support":  null,
+                                                      "api_cycle":  "11-24h2-e-lts",
+                                                      "type":  "client",
+                                                      "product_name":  "Windows",
+                                                      "api_product":  "windows"
+                                                  },
+                        "Windows 11-21h2-w":  {
+                                                  "version":  "11-21h2-w",
+                                                  "eol_date":  "2023-10-10",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-21h2-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-21h1":  {
+                                                "version":  "10-21h1",
+                                                "eol_date":  "2022-12-13",
+                                                "extended_support":  null,
+                                                "api_cycle":  "10-21h1",
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_product":  "windows"
+                                            },
+                        "Windows 10-21h2-e-lts":  {
+                                                      "version":  "10-21h2-e-lts",
+                                                      "eol_date":  "2027-01-12",
+                                                      "extended_support":  null,
+                                                      "api_cycle":  "10-21h2-e-lts",
+                                                      "type":  "client",
+                                                      "product_name":  "Windows",
+                                                      "api_product":  "windows"
+                                                  },
+                        "Windows 11-21h2-e":  {
+                                                  "version":  "11-21h2-e",
+                                                  "eol_date":  "2024-10-08",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-21h2-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 11-23h2-e":  {
+                                                  "version":  "11-23h2-e",
+                                                  "eol_date":  "2026-11-10",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-23h2-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-21h2-iot-lts":  {
+                                                        "version":  "10-21h2-iot-lts",
+                                                        "eol_date":  "2032-01-13",
+                                                        "extended_support":  null,
+                                                        "api_cycle":  "10-21h2-iot-lts",
+                                                        "type":  "client",
+                                                        "product_name":  "Windows",
+                                                        "api_product":  "windows"
+                                                    },
+                        "Windows 8":  {
+                                          "version":  "8",
+                                          "eol_date":  "2016-01-12",
+                                          "extended_support":  null,
+                                          "api_cycle":  "8",
+                                          "type":  "client",
+                                          "product_name":  "Windows",
+                                          "api_product":  "windows"
+                                      },
+                        "Windows 10-20h2-w":  {
+                                                  "version":  "10-20h2-w",
+                                                  "eol_date":  "2022-05-10",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-20h2-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1607-e":  {
+                                                  "version":  "10-1607-e",
+                                                  "eol_date":  "2019-04-09",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1607-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-20h2-e":  {
+                                                  "version":  "10-20h2-e",
+                                                  "eol_date":  "2023-05-09",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-20h2-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 11-22h2-e":  {
+                                                  "version":  "11-22h2-e",
+                                                  "eol_date":  "2025-10-14",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "11-22h2-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-21h2-e":  {
+                                                  "version":  "10-21h2-e",
+                                                  "eol_date":  "2024-06-11",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-21h2-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1709-w":  {
+                                                  "version":  "10-1709-w",
+                                                  "eol_date":  "2019-04-09",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1709-w",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows 10-1511":  {
+                                                "version":  "10-1511",
+                                                "eol_date":  "2017-10-10",
+                                                "extended_support":  null,
+                                                "api_cycle":  "10-1511",
+                                                "type":  "client",
+                                                "product_name":  "Windows",
+                                                "api_product":  "windows"
+                                            },
+                        "Windows 10-1809-e":  {
+                                                  "version":  "10-1809-e",
+                                                  "eol_date":  "2021-05-11",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "10-1809-e",
+                                                  "type":  "client",
+                                                  "product_name":  "Windows",
+                                                  "api_product":  "windows"
+                                              },
+                        "Windows Server 1709-sac":  {
+                                                        "version":  "1709-sac",
+                                                        "eol_date":  "2019-04-09",
+                                                        "extended_support":  null,
+                                                        "api_cycle":  "1709-sac",
+                                                        "type":  "server",
+                                                        "product_name":  "Windows Server",
+                                                        "api_product":  "windows-server"
+                                                    },
+                        "Windows Server 1909-sac":  {
+                                                        "version":  "1909-sac",
+                                                        "eol_date":  "2021-05-11",
+                                                        "extended_support":  null,
+                                                        "api_cycle":  "1909-sac",
+                                                        "type":  "server",
+                                                        "product_name":  "Windows Server",
+                                                        "api_product":  "windows-server"
+                                                    },
+                        "Windows Server 2003":  {
+                                                    "version":  "2003-sp2",
+                                                    "eol_date":  "2015-07-14",
+                                                    "extended_support":  null,
+                                                    "api_cycle":  "2003-sp2",
+                                                    "type":  "server",
+                                                    "product_name":  "Windows Server",
+                                                    "api_product":  "windows-server"
+                                                },
+                        "Windows Server 2000":  {
+                                                    "version":  "2000",
+                                                    "eol_date":  "2010-07-13",
+                                                    "extended_support":  null,
+                                                    "api_cycle":  "2000",
+                                                    "type":  "server",
+                                                    "product_name":  "Windows Server",
+                                                    "api_product":  "windows-server"
+                                                },
+                        "Windows Server 2019":  {
+                                                    "version":  "2019",
+                                                    "eol_date":  "2029-01-09",
+                                                    "extended_support":  null,
+                                                    "api_cycle":  "2019",
+                                                    "type":  "server",
+                                                    "product_name":  "Windows Server",
+                                                    "api_product":  "windows-server"
+                                                },
+                        "Windows Server 2022":  {
+                                                    "version":  "2022",
+                                                    "eol_date":  "2031-10-14",
+                                                    "extended_support":  null,
+                                                    "api_cycle":  "2022",
+                                                    "type":  "server",
+                                                    "product_name":  "Windows Server",
+                                                    "api_product":  "windows-server"
+                                                },
+                        "Windows Server 2016":  {
+                                                    "version":  "2016",
+                                                    "eol_date":  "2027-01-12",
+                                                    "extended_support":  null,
+                                                    "api_cycle":  "2016",
+                                                    "type":  "server",
+                                                    "product_name":  "Windows Server",
+                                                    "api_product":  "windows-server"
+                                                },
+                        "Windows Server 2008 R2":  {
+                                                       "version":  "2008-r2-sp1",
+                                                       "eol_date":  "2020-01-14",
+                                                       "extended_support":  "2023-01-10",
+                                                       "api_cycle":  "2008-r2-sp1",
+                                                       "type":  "server",
+                                                       "product_name":  "Windows Server",
+                                                       "api_product":  "windows-server"
+                                                   },
+                        "Windows Server 23h2-ac":  {
+                                                       "version":  "23h2-ac",
+                                                       "eol_date":  "2025-10-24",
+                                                       "extended_support":  null,
+                                                       "api_cycle":  "23h2-ac",
+                                                       "type":  "server",
+                                                       "product_name":  "Windows Server",
+                                                       "api_product":  "windows-server"
+                                                   },
+                        "Windows Server 2004-sac":  {
+                                                        "version":  "2004-sac",
+                                                        "eol_date":  "2021-12-14",
+                                                        "extended_support":  null,
+                                                        "api_cycle":  "2004-sac",
+                                                        "type":  "server",
+                                                        "product_name":  "Windows Server",
+                                                        "api_product":  "windows-server"
+                                                    },
+                        "Windows Server 2025":  {
+                                                    "version":  "2025",
+                                                    "eol_date":  "2034-10-10",
+                                                    "extended_support":  null,
+                                                    "api_cycle":  "2025",
+                                                    "type":  "server",
+                                                    "product_name":  "Windows Server",
+                                                    "api_product":  "windows-server"
+                                                },
+                        "Windows Server 20h2-sac":  {
+                                                        "version":  "20h2-sac",
+                                                        "eol_date":  "2022-08-09",
+                                                        "extended_support":  null,
+                                                        "api_cycle":  "20h2-sac",
+                                                        "type":  "server",
+                                                        "product_name":  "Windows Server",
+                                                        "api_product":  "windows-server"
+                                                    },
+                        "Windows Server 1903-sac":  {
+                                                        "version":  "1903-sac",
+                                                        "eol_date":  "2020-12-08",
+                                                        "extended_support":  null,
+                                                        "api_cycle":  "1903-sac",
+                                                        "type":  "server",
+                                                        "product_name":  "Windows Server",
+                                                        "api_product":  "windows-server"
+                                                    },
+                        "Windows Server 2012 R2":  {
+                                                       "version":  "2012-r2",
+                                                       "eol_date":  "2023-10-10",
+                                                       "extended_support":  "2026-10-13",
+                                                       "api_cycle":  "2012-r2",
+                                                       "type":  "server",
+                                                       "product_name":  "Windows Server",
+                                                       "api_product":  "windows-server"
+                                                   },
+                        "Windows Server 2012":  {
+                                                    "version":  "2012",
+                                                    "eol_date":  "2023-10-10",
+                                                    "extended_support":  "2026-10-13",
+                                                    "api_cycle":  "2012",
+                                                    "type":  "server",
+                                                    "product_name":  "Windows Server",
+                                                    "api_product":  "windows-server"
+                                                },
+                        "Windows Server 1809-sac":  {
+                                                        "version":  "1809-sac",
+                                                        "eol_date":  "2020-11-10",
+                                                        "extended_support":  null,
+                                                        "api_cycle":  "1809-sac",
+                                                        "type":  "server",
+                                                        "product_name":  "Windows Server",
+                                                        "api_product":  "windows-server"
+                                                    },
+                        "Windows Server 2008":  {
+                                                    "version":  "2008-sp2",
+                                                    "eol_date":  "2020-01-14",
+                                                    "extended_support":  "2023-01-10",
+                                                    "api_cycle":  "2008-sp2",
+                                                    "type":  "server",
+                                                    "product_name":  "Windows Server",
+                                                    "api_product":  "windows-server"
+                                                },
+                        "Windows Server 1803-sac":  {
+                                                        "version":  "1803-sac",
+                                                        "eol_date":  "2019-11-12",
+                                                        "extended_support":  null,
+                                                        "api_cycle":  "1803-sac",
+                                                        "type":  "server",
+                                                        "product_name":  "Windows Server",
+                                                        "api_product":  "windows-server"
+                                                    },
+                        "ubuntu 16.04":  {
+                                             "version":  "16.04",
+                                             "eol_date":  "2021-04-02",
+                                             "extended_support":  "2026-04-02",
+                                             "api_cycle":  "16.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 19.04":  {
+                                             "version":  "19.04",
+                                             "eol_date":  "2020-01-23",
+                                             "extended_support":  null,
+                                             "api_cycle":  "19.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 7.10":  {
+                                            "version":  "7.10",
+                                            "eol_date":  "2009-04-18",
+                                            "extended_support":  null,
+                                            "api_cycle":  "7.10",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 13.10":  {
+                                             "version":  "13.10",
+                                             "eol_date":  "2014-07-17",
+                                             "extended_support":  null,
+                                             "api_cycle":  "13.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 8.10":  {
+                                            "version":  "8.10",
+                                            "eol_date":  "2010-04-30",
+                                            "extended_support":  null,
+                                            "api_cycle":  "8.10",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 17.04":  {
+                                             "version":  "17.04",
+                                             "eol_date":  "2018-01-13",
+                                             "extended_support":  null,
+                                             "api_cycle":  "17.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 5.04":  {
+                                            "version":  "5.04",
+                                            "eol_date":  "2006-10-31",
+                                            "extended_support":  null,
+                                            "api_cycle":  "5.04",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 10.04":  {
+                                             "version":  "10.04",
+                                             "eol_date":  "2013-05-09",
+                                             "extended_support":  null,
+                                             "api_cycle":  "10.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 19.10":  {
+                                             "version":  "19.10",
+                                             "eol_date":  "2020-07-06",
+                                             "extended_support":  null,
+                                             "api_cycle":  "19.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 11.10":  {
+                                             "version":  "11.10",
+                                             "eol_date":  "2013-05-09",
+                                             "extended_support":  null,
+                                             "api_cycle":  "11.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 12.10":  {
+                                             "version":  "12.10",
+                                             "eol_date":  "2014-05-16",
+                                             "extended_support":  null,
+                                             "api_cycle":  "12.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 15.04":  {
+                                             "version":  "15.04",
+                                             "eol_date":  "2016-02-04",
+                                             "extended_support":  null,
+                                             "api_cycle":  "15.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 18.10":  {
+                                             "version":  "18.10",
+                                             "eol_date":  "2019-07-18",
+                                             "extended_support":  null,
+                                             "api_cycle":  "18.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 8.04":  {
+                                            "version":  "8.04",
+                                            "eol_date":  "2013-05-09",
+                                            "extended_support":  null,
+                                            "api_cycle":  "8.04",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 24.04":  {
+                                             "version":  "24.04",
+                                             "eol_date":  "2029-05-31",
+                                             "extended_support":  "2036-05-31",
+                                             "api_cycle":  "24.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 22.10":  {
+                                             "version":  "22.10",
+                                             "eol_date":  "2023-07-20",
+                                             "extended_support":  null,
+                                             "api_cycle":  "22.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 21.10":  {
+                                             "version":  "21.10",
+                                             "eol_date":  "2022-07-14",
+                                             "extended_support":  null,
+                                             "api_cycle":  "21.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 5.10":  {
+                                            "version":  "5.10",
+                                            "eol_date":  "2007-04-13",
+                                            "extended_support":  null,
+                                            "api_cycle":  "5.10",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 23.10":  {
+                                             "version":  "23.10",
+                                             "eol_date":  "2024-07-12",
+                                             "extended_support":  null,
+                                             "api_cycle":  "23.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 10.10":  {
+                                             "version":  "10.10",
+                                             "eol_date":  "2012-04-10",
+                                             "extended_support":  null,
+                                             "api_cycle":  "10.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 20.10":  {
+                                             "version":  "20.10",
+                                             "eol_date":  "2021-07-22",
+                                             "extended_support":  null,
+                                             "api_cycle":  "20.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 17.10":  {
+                                             "version":  "17.10",
+                                             "eol_date":  "2018-07-19",
+                                             "extended_support":  null,
+                                             "api_cycle":  "17.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 21.04":  {
+                                             "version":  "21.04",
+                                             "eol_date":  "2022-01-20",
+                                             "extended_support":  null,
+                                             "api_cycle":  "21.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 12.04":  {
+                                             "version":  "12.04",
+                                             "eol_date":  "2017-04-28",
+                                             "extended_support":  "2019-04-26",
+                                             "api_cycle":  "12.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 23.04":  {
+                                             "version":  "23.04",
+                                             "eol_date":  "2024-01-20",
+                                             "extended_support":  null,
+                                             "api_cycle":  "23.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 15.10":  {
+                                             "version":  "15.10",
+                                             "eol_date":  "2016-07-28",
+                                             "extended_support":  null,
+                                             "api_cycle":  "15.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 25.10":  {
+                                             "version":  "25.10",
+                                             "eol_date":  "2026-07-01",
+                                             "extended_support":  null,
+                                             "api_cycle":  "25.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 16.10":  {
+                                             "version":  "16.10",
+                                             "eol_date":  "2017-07-20",
+                                             "extended_support":  null,
+                                             "api_cycle":  "16.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 13.04":  {
+                                             "version":  "13.04",
+                                             "eol_date":  "2014-01-27",
+                                             "extended_support":  null,
+                                             "api_cycle":  "13.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 9.04":  {
+                                            "version":  "9.04",
+                                            "eol_date":  "2010-10-23",
+                                            "extended_support":  null,
+                                            "api_cycle":  "9.04",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 14.10":  {
+                                             "version":  "14.10",
+                                             "eol_date":  "2015-07-23",
+                                             "extended_support":  null,
+                                             "api_cycle":  "14.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 11.04":  {
+                                             "version":  "11.04",
+                                             "eol_date":  "2012-10-28",
+                                             "extended_support":  null,
+                                             "api_cycle":  "11.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 6.10":  {
+                                            "version":  "6.10",
+                                            "eol_date":  "2008-04-26",
+                                            "extended_support":  null,
+                                            "api_cycle":  "6.10",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 6.06":  {
+                                            "version":  "6.06",
+                                            "eol_date":  "2011-06-01",
+                                            "extended_support":  null,
+                                            "api_cycle":  "6.06",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 9.10":  {
+                                            "version":  "9.10",
+                                            "eol_date":  "2011-04-30",
+                                            "extended_support":  null,
+                                            "api_cycle":  "9.10",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 14.04":  {
+                                             "version":  "14.04",
+                                             "eol_date":  "2019-04-02",
+                                             "extended_support":  "2024-04-02",
+                                             "api_cycle":  "14.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 4.10":  {
+                                            "version":  "4.10",
+                                            "eol_date":  "2006-04-30",
+                                            "extended_support":  null,
+                                            "api_cycle":  "4.10",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 18.04":  {
+                                             "version":  "18.04",
+                                             "eol_date":  "2023-05-31",
+                                             "extended_support":  "2028-04-01",
+                                             "api_cycle":  "18.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 20.04":  {
+                                             "version":  "20.04",
+                                             "eol_date":  "2025-05-31",
+                                             "extended_support":  "2030-04-02",
+                                             "api_cycle":  "20.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 7.04":  {
+                                            "version":  "7.04",
+                                            "eol_date":  "2008-10-19",
+                                            "extended_support":  null,
+                                            "api_cycle":  "7.04",
+                                            "type":  "linux",
+                                            "product_name":  "Ubuntu",
+                                            "api_product":  "ubuntu"
+                                        },
+                        "ubuntu 22.04":  {
+                                             "version":  "22.04",
+                                             "eol_date":  "2027-04-01",
+                                             "extended_support":  "2032-04-09",
+                                             "api_cycle":  "22.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 24.10":  {
+                                             "version":  "24.10",
+                                             "eol_date":  "2025-07-10",
+                                             "extended_support":  null,
+                                             "api_cycle":  "24.10",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "ubuntu 25.04":  {
+                                             "version":  "25.04",
+                                             "eol_date":  "2026-01-17",
+                                             "extended_support":  null,
+                                             "api_cycle":  "25.04",
+                                             "type":  "linux",
+                                             "product_name":  "Ubuntu",
+                                             "api_product":  "ubuntu"
+                                         },
+                        "macOS 10.5":  {
+                                           "version":  "10.5",
+                                           "eol_date":  "2009-08-13",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.5",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 10.4":  {
+                                           "version":  "10.4",
+                                           "eol_date":  "2007-11-14",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.4",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 10.6":  {
+                                           "version":  "10.6",
+                                           "eol_date":  "2011-07-25",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.6",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 10.0":  {
+                                           "version":  "10.0",
+                                           "eol_date":  "2001-06-22",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.0",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 13 Ventura":  {
+                                                 "version":  "13",
+                                                 "eol_date":  "2025-09-15",
+                                                 "extended_support":  null,
+                                                 "api_cycle":  "13",
+                                                 "type":  "client",
+                                                 "product_name":  "macOS",
+                                                 "api_product":  "macos"
+                                             },
+                        "macOS 10.11":  {
+                                            "version":  "10.11",
+                                            "eol_date":  "2018-12-01",
+                                            "extended_support":  null,
+                                            "api_cycle":  "10.11",
+                                            "type":  "client",
+                                            "product_name":  "macOS",
+                                            "api_product":  "macos"
+                                        },
+                        "macOS 26":  {
+                                         "version":  "26",
+                                         "eol_date":  "",
+                                         "extended_support":  null,
+                                         "api_cycle":  "26",
+                                         "type":  "client",
+                                         "product_name":  "macOS",
+                                         "api_product":  "macos"
+                                     },
+                        "macOS 10.7":  {
+                                           "version":  "10.7",
+                                           "eol_date":  "2012-10-04",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.7",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 10.1":  {
+                                           "version":  "10.1",
+                                           "eol_date":  "2002-06-06",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.1",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 10.3":  {
+                                           "version":  "10.3",
+                                           "eol_date":  "2005-04-15",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.3",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 14 Sonoma":  {
+                                                "version":  "14",
+                                                "eol_date":  "",
+                                                "extended_support":  null,
+                                                "api_cycle":  "14",
+                                                "type":  "client",
+                                                "product_name":  "macOS",
+                                                "api_product":  "macos"
+                                            },
+                        "macOS 10.12":  {
+                                            "version":  "10.12",
+                                            "eol_date":  "2019-10-01",
+                                            "extended_support":  null,
+                                            "api_cycle":  "10.12",
+                                            "type":  "client",
+                                            "product_name":  "macOS",
+                                            "api_product":  "macos"
+                                        },
+                        "macOS 10.10":  {
+                                            "version":  "10.10",
+                                            "eol_date":  "2017-08-01",
+                                            "extended_support":  null,
+                                            "api_cycle":  "10.10",
+                                            "type":  "client",
+                                            "product_name":  "macOS",
+                                            "api_product":  "macos"
+                                        },
+                        "macOS 10.2":  {
+                                           "version":  "10.2",
+                                           "eol_date":  "2003-10-03",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.2",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 11 Big Sur":  {
+                                                 "version":  "11",
+                                                 "eol_date":  "2023-09-26",
+                                                 "extended_support":  null,
+                                                 "api_cycle":  "11",
+                                                 "type":  "client",
+                                                 "product_name":  "macOS",
+                                                 "api_product":  "macos"
+                                             },
+                        "macOS 10.8":  {
+                                           "version":  "10.8",
+                                           "eol_date":  "2015-08-13",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.8",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 10.13":  {
+                                            "version":  "10.13",
+                                            "eol_date":  "2020-12-01",
+                                            "extended_support":  null,
+                                            "api_cycle":  "10.13",
+                                            "type":  "client",
+                                            "product_name":  "macOS",
+                                            "api_product":  "macos"
+                                        },
+                        "macOS 12 Monterey":  {
+                                                  "version":  "12",
+                                                  "eol_date":  "2024-09-16",
+                                                  "extended_support":  null,
+                                                  "api_cycle":  "12",
+                                                  "type":  "client",
+                                                  "product_name":  "macOS",
+                                                  "api_product":  "macos"
+                                              },
+                        "macOS 10.15 Catalina":  {
+                                                     "version":  "10.15",
+                                                     "eol_date":  "2022-09-12",
+                                                     "extended_support":  null,
+                                                     "api_cycle":  "10.15",
+                                                     "type":  "client",
+                                                     "product_name":  "macOS",
+                                                     "api_product":  "macos"
+                                                 },
+                        "macOS 10.9":  {
+                                           "version":  "10.9",
+                                           "eol_date":  "2016-12-01",
+                                           "extended_support":  null,
+                                           "api_cycle":  "10.9",
+                                           "type":  "client",
+                                           "product_name":  "macOS",
+                                           "api_product":  "macos"
+                                       },
+                        "macOS 15 Sequoia":  {
+                                                 "version":  "15",
+                                                 "eol_date":  "",
+                                                 "extended_support":  null,
+                                                 "api_cycle":  "15",
+                                                 "type":  "client",
+                                                 "product_name":  "macOS",
+                                                 "api_product":  "macos"
+                                             },
+                        "macOS 10.14":  {
+                                            "version":  "10.14",
+                                            "eol_date":  "2021-10-25",
+                                            "extended_support":  null,
+                                            "api_cycle":  "10.14",
+                                            "type":  "client",
+                                            "product_name":  "macOS",
+                                            "api_product":  "macos"
+                                        },
+                        "debian 8":  {
+                                         "version":  "8",
+                                         "eol_date":  "2018-06-17",
+                                         "extended_support":  "2020-06-30",
+                                         "api_cycle":  "8",
+                                         "type":  "linux",
+                                         "product_name":  "Debian",
+                                         "api_product":  "debian"
+                                     },
+                        "debian 10":  {
+                                          "version":  "10",
+                                          "eol_date":  "2022-09-10",
+                                          "extended_support":  "2024-06-30",
+                                          "api_cycle":  "10",
+                                          "type":  "linux",
+                                          "product_name":  "Debian",
+                                          "api_product":  "debian"
+                                      },
+                        "debian 1.3":  {
+                                           "version":  "1.3",
+                                           "eol_date":  "1998-12-08",
+                                           "extended_support":  "1998-12-08",
+                                           "api_cycle":  "1.3",
+                                           "type":  "linux",
+                                           "product_name":  "Debian",
+                                           "api_product":  "debian"
+                                       },
+                        "debian 3.0":  {
+                                           "version":  "3.0",
+                                           "eol_date":  "2006-06-30",
+                                           "extended_support":  "2006-06-30",
+                                           "api_cycle":  "3.0",
+                                           "type":  "linux",
+                                           "product_name":  "Debian",
+                                           "api_product":  "debian"
+                                       },
+                        "debian 2.0":  {
+                                           "version":  "2.0",
+                                           "eol_date":  "1999-02-15",
+                                           "extended_support":  "1999-02-15",
+                                           "api_cycle":  "2.0",
+                                           "type":  "linux",
+                                           "product_name":  "Debian",
+                                           "api_product":  "debian"
+                                       },
+                        "debian 13":  {
+                                          "version":  "13",
+                                          "eol_date":  "2028-08-09",
+                                          "extended_support":  "2030-06-30",
+                                          "api_cycle":  "13",
+                                          "type":  "linux",
+                                          "product_name":  "Debian",
+                                          "api_product":  "debian"
+                                      },
+                        "debian 11":  {
+                                          "version":  "11",
+                                          "eol_date":  "2024-08-14",
+                                          "extended_support":  "2026-08-31",
+                                          "api_cycle":  "11",
+                                          "type":  "linux",
+                                          "product_name":  "Debian",
+                                          "api_product":  "debian"
+                                      },
+                        "debian 1.2":  {
+                                           "version":  "1.2",
+                                           "eol_date":  "1997-10-23",
+                                           "extended_support":  "1997-10-23",
+                                           "api_cycle":  "1.2",
+                                           "type":  "linux",
+                                           "product_name":  "Debian",
+                                           "api_product":  "debian"
+                                       },
+                        "debian 3.1":  {
+                                           "version":  "3.1",
+                                           "eol_date":  "2008-03-31",
+                                           "extended_support":  "2008-03-31",
+                                           "api_cycle":  "3.1",
+                                           "type":  "linux",
+                                           "product_name":  "Debian",
+                                           "api_product":  "debian"
+                                       },
+                        "debian 6":  {
+                                         "version":  "6",
+                                         "eol_date":  "2014-05-31",
+                                         "extended_support":  "2016-02-29",
+                                         "api_cycle":  "6",
+                                         "type":  "linux",
+                                         "product_name":  "Debian",
+                                         "api_product":  "debian"
+                                     },
+                        "debian 4":  {
+                                         "version":  "4",
+                                         "eol_date":  "2010-02-15",
+                                         "extended_support":  "2010-02-15",
+                                         "api_cycle":  "4",
+                                         "type":  "linux",
+                                         "product_name":  "Debian",
+                                         "api_product":  "debian"
+                                     },
+                        "debian 12":  {
+                                          "version":  "12",
+                                          "eol_date":  "2026-06-10",
+                                          "extended_support":  "2028-06-30",
+                                          "api_cycle":  "12",
+                                          "type":  "linux",
+                                          "product_name":  "Debian",
+                                          "api_product":  "debian"
+                                      },
+                        "debian 2.1":  {
+                                           "version":  "2.1",
+                                           "eol_date":  "2000-09-30",
+                                           "extended_support":  "2000-10-30",
+                                           "api_cycle":  "2.1",
+                                           "type":  "linux",
+                                           "product_name":  "Debian",
+                                           "api_product":  "debian"
+                                       },
+                        "debian 1.1":  {
+                                           "version":  "1.1",
+                                           "eol_date":  "1996-12-12",
+                                           "extended_support":  "1996-12-12",
+                                           "api_cycle":  "1.1",
+                                           "type":  "linux",
+                                           "product_name":  "Debian",
+                                           "api_product":  "debian"
+                                       },
+                        "debian 7":  {
+                                         "version":  "7",
+                                         "eol_date":  "2016-04-25",
+                                         "extended_support":  "2018-05-31",
+                                         "api_cycle":  "7",
+                                         "type":  "linux",
+                                         "product_name":  "Debian",
+                                         "api_product":  "debian"
+                                     },
+                        "debian 5":  {
+                                         "version":  "5",
+                                         "eol_date":  "2012-02-06",
+                                         "extended_support":  "2012-02-06",
+                                         "api_cycle":  "5",
+                                         "type":  "linux",
+                                         "product_name":  "Debian",
+                                         "api_product":  "debian"
+                                     },
+                        "debian 9":  {
+                                         "version":  "9",
+                                         "eol_date":  "2020-07-18",
+                                         "extended_support":  "2022-07-01",
+                                         "api_cycle":  "9",
+                                         "type":  "linux",
+                                         "product_name":  "Debian",
+                                         "api_product":  "debian"
+                                     },
+                        "debian 2.2":  {
+                                           "version":  "2.2",
+                                           "eol_date":  "2003-06-30",
+                                           "extended_support":  "2003-06-30",
+                                           "api_cycle":  "2.2",
+                                           "type":  "linux",
+                                           "product_name":  "Debian",
+                                           "api_product":  "debian"
+                                       },
+                        "rhel 8":  {
+                                       "version":  "8",
+                                       "eol_date":  "2029-05-31",
+                                       "extended_support":  "2032-05-31",
+                                       "api_cycle":  "8",
+                                       "type":  "linux",
+                                       "product_name":  "Rhel",
+                                       "api_product":  "rhel"
+                                   },
+                        "rhel 6":  {
+                                       "version":  "6",
+                                       "eol_date":  "2020-11-30",
+                                       "extended_support":  "2024-06-30",
+                                       "api_cycle":  "6",
+                                       "type":  "linux",
+                                       "product_name":  "Rhel",
+                                       "api_product":  "rhel"
+                                   },
+                        "rhel 9":  {
+                                       "version":  "9",
+                                       "eol_date":  "2032-05-31",
+                                       "extended_support":  "2035-05-31",
+                                       "api_cycle":  "9",
+                                       "type":  "linux",
+                                       "product_name":  "Rhel",
+                                       "api_product":  "rhel"
+                                   },
+                        "rhel 4":  {
+                                       "version":  "4",
+                                       "eol_date":  "2012-02-29",
+                                       "extended_support":  "2017-03-31",
+                                       "api_cycle":  "4",
+                                       "type":  "linux",
+                                       "product_name":  "Rhel",
+                                       "api_product":  "rhel"
+                                   },
+                        "rhel 7":  {
+                                       "version":  "7",
+                                       "eol_date":  "2024-06-30",
+                                       "extended_support":  "2029-05-31",
+                                       "api_cycle":  "7",
+                                       "type":  "linux",
+                                       "product_name":  "Rhel",
+                                       "api_product":  "rhel"
+                                   },
+                        "rhel 10":  {
+                                        "version":  "10",
+                                        "eol_date":  "2035-05-31",
+                                        "extended_support":  "2038-05-31",
+                                        "api_cycle":  "10",
+                                        "type":  "linux",
+                                        "product_name":  "Rhel",
+                                        "api_product":  "rhel"
+                                    },
+                        "rhel 5":  {
+                                       "version":  "5",
+                                       "eol_date":  "2017-03-31",
+                                       "extended_support":  "2020-11-30",
+                                       "api_cycle":  "5",
+                                       "type":  "linux",
+                                       "product_name":  "Rhel",
+                                       "api_product":  "rhel"
+                                   },
+                        "sles 15.1":  {
+                                          "version":  "15.1",
+                                          "eol_date":  "2021-01-31",
+                                          "extended_support":  "2024-01-31",
+                                          "api_cycle":  "15.1",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 15.7":  {
+                                          "version":  "15.7",
+                                          "eol_date":  "2031-07-31",
+                                          "extended_support":  "2034-07-31",
+                                          "api_cycle":  "15.7",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 15.5":  {
+                                          "version":  "15.5",
+                                          "eol_date":  "2024-12-31",
+                                          "extended_support":  "2027-12-31",
+                                          "api_cycle":  "15.5",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 10.1":  {
+                                          "version":  "10.1",
+                                          "eol_date":  "2008-11-30",
+                                          "extended_support":  "2010-12-31",
+                                          "api_cycle":  "10.1",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 15.6":  {
+                                          "version":  "15.6",
+                                          "eol_date":  "2025-12-31",
+                                          "extended_support":  "2028-12-31",
+                                          "api_cycle":  "15.6",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 12.2":  {
+                                          "version":  "12.2",
+                                          "eol_date":  "2018-03-31",
+                                          "extended_support":  "2021-03-31",
+                                          "api_cycle":  "12.2",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 11.1":  {
+                                          "version":  "11.1",
+                                          "eol_date":  "2012-08-31",
+                                          "extended_support":  "2015-08-30",
+                                          "api_cycle":  "11.1",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 15.4":  {
+                                          "version":  "15.4",
+                                          "eol_date":  "2023-12-31",
+                                          "extended_support":  "2026-12-31",
+                                          "api_cycle":  "15.4",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 10.0":  {
+                                          "version":  "10.0",
+                                          "eol_date":  "2007-12-31",
+                                          "extended_support":  "2007-12-31",
+                                          "api_cycle":  "10.0",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 10.4":  {
+                                          "version":  "10.4",
+                                          "eol_date":  "2013-07-31",
+                                          "extended_support":  "2016-07-30",
+                                          "api_cycle":  "10.4",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 12.5":  {
+                                          "version":  "12.5",
+                                          "eol_date":  "2024-10-31",
+                                          "extended_support":  "2027-10-31",
+                                          "api_cycle":  "12.5",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 12.0":  {
+                                          "version":  "12.0",
+                                          "eol_date":  "2016-06-30",
+                                          "extended_support":  "2019-07-01",
+                                          "api_cycle":  "12.0",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 10.2":  {
+                                          "version":  "10.2",
+                                          "eol_date":  "2010-04-11",
+                                          "extended_support":  "2013-04-10",
+                                          "api_cycle":  "10.2",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 10.3":  {
+                                          "version":  "10.3",
+                                          "eol_date":  "2011-10-11",
+                                          "extended_support":  "2014-10-31",
+                                          "api_cycle":  "10.3",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 12.4":  {
+                                          "version":  "12.4",
+                                          "eol_date":  "2020-06-30",
+                                          "extended_support":  "2023-06-30",
+                                          "api_cycle":  "12.4",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 15.3":  {
+                                          "version":  "15.3",
+                                          "eol_date":  "2022-12-31",
+                                          "extended_support":  "2025-12-31",
+                                          "api_cycle":  "15.3",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 11.4":  {
+                                          "version":  "11.4",
+                                          "eol_date":  "2019-03-31",
+                                          "extended_support":  "2022-03-31",
+                                          "api_cycle":  "11.4",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 11.2":  {
+                                          "version":  "11.2",
+                                          "eol_date":  "2014-01-31",
+                                          "extended_support":  "2017-01-30",
+                                          "api_cycle":  "11.2",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 11.0":  {
+                                          "version":  "11.0",
+                                          "eol_date":  "2010-12-31",
+                                          "extended_support":  "2010-12-31",
+                                          "api_cycle":  "11.0",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 15.2":  {
+                                          "version":  "15.2",
+                                          "eol_date":  "2021-12-31",
+                                          "extended_support":  "2024-12-31",
+                                          "api_cycle":  "15.2",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 12.1":  {
+                                          "version":  "12.1",
+                                          "eol_date":  "2017-05-31",
+                                          "extended_support":  "2020-05-31",
+                                          "api_cycle":  "12.1",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 12.3":  {
+                                          "version":  "12.3",
+                                          "eol_date":  "2019-06-30",
+                                          "extended_support":  "2022-06-30",
+                                          "api_cycle":  "12.3",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 11.3":  {
+                                          "version":  "11.3",
+                                          "eol_date":  "2016-01-31",
+                                          "extended_support":  "2019-01-30",
+                                          "api_cycle":  "11.3",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      },
+                        "sles 15.0":  {
+                                          "version":  "15.0",
+                                          "eol_date":  "2019-12-31",
+                                          "extended_support":  "2022-12-31",
+                                          "api_cycle":  "15.0",
+                                          "type":  "linux",
+                                          "product_name":  "Sles",
+                                          "api_product":  "sles"
+                                      }
+                    }
+}
