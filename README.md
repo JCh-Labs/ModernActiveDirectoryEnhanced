@@ -1,8 +1,18 @@
+
 Under development
 
 Use at your own risk
 
 -----
+![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/ModernActiveDirectoryEnhanced)
+![Language](https://img.shields.io/badge/Powershell-100.0%25-blue)
+![License](https://img.shields.io/bower/l/Bootstrap?style=plastic)
+![Platform](https://img.shields.io/badge/Platform-Windows-brightgreen)
+![PowerShell Gallery Downloads](https://img.shields.io/powershellgallery/dt/ModernActiveDirectoryEnhanced?color=orange&label=Download%20Powershell%20Gallery)
+
+
+
+
 
 
 # ModernActiveDirectoryEnhanced
