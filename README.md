@@ -12,11 +12,13 @@ Use at your own risk
 
 
 # ModernActiveDirectoryEnhanced
-### Version 2.0.0 – Enhanced Fork by JCh
+
 ![Logo](Pictures/Logo.png "Logo")
 
+### Version 2.0.0 – Enhanced Fork by JCh
 > 🔁 Fork amélioré de [Modern Active Directory](https://github.com/dakhama-mehdi/Modern_ActiveDirectory)
-> par [Mehdi Dakhama](https://github.com/dakhama-mehdi) — étendu avec un moteur EoL complet.
+> par [Mehdi Dakhama](https://github.com/dakhama-mehdi)
+
 
 ---
 
