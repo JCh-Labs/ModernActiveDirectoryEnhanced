@@ -49,11 +49,10 @@ Use at your own risk
 - **PSWriteExcel** ≥ 0.1.15
 
 ---
-###
-### 📦 Installation depuis Powershell Gallery
-###
+# 📦 Installation depuis Powershell Gallery
 
-# Importer le module
+
+### Importer le module
 ```powershell
 Import-Module ModernActiveDirectoryEnhanced
 ```
