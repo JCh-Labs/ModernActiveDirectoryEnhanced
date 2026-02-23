@@ -91,7 +91,6 @@ Vous pouvez les isntaller en ligne de commande ou via IHM
 [CommandLine_WindowsServer] RSAT : Console de gestion des GPO (GPMC) = > Install-WindowsFeature GPMC
 
 
-
 ```
 ```
 
