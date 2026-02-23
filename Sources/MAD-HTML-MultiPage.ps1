@@ -8,20 +8,34 @@
 
         $eolInfo = Get-OSEoLInfo -OSName $osItem.OS
 
-        # Déterminer le statut principal depuis les compteurs
-        $primaryStatus = 'Unknown'
-        if     ($osItem.EOL -gt 0)                    { $primaryStatus = 'EOL' }
-        elseif ($osItem.$WarningStatusName -gt 0)     { $primaryStatus = $WarningStatusName }
-        elseif ($osItem.Supported -gt 0)              { $primaryStatus = 'Supported' }
+        # Produits ESU PAYANT : statut sur eol_date, nom avec *, colonne EoL_ESU indicative.
+        # Produits LTS GRATUIT (Debian) : statut sur extended_support, pas de *.
+        $paidEsuProducts = @('windows','windows-server','ubuntu','rhel','sles')
 
-        # Construire EoLDate et DaysUntilEoL
+        $primaryStatus = 'Unknown'
+        if     ($osItem.EOL -gt 0)                { $primaryStatus = 'EOL' }
+        elseif ($osItem.$WarningStatusName -gt 0) { $primaryStatus = $WarningStatusName }
+        elseif ($osItem.Supported -gt 0)          { $primaryStatus = 'Supported' }
+
         $eolDateDisplay = 'Unknown'
         $daysInfo       = ''
+        $esuDate        = ''
+        $osDisplayName  = $osItem.OS
 
         if ($eolInfo) {
-            $rawEol = $eolInfo.eol_date
+            $rawEol  = $eolInfo.eol_date
+            $rawEsu  = $eolInfo.extended_support
+            $apiProd = $eolInfo.api_product
+
+            # EoL_ESU renseigné pour tous les OS avec extended_support (payant ou gratuit).
+            # * ajouté uniquement pour les ESU PAYANTS.
+            $hasEsu = $rawEsu -and $rawEsu -ne $false -and
+                      $rawEsu -ne 'False' -and $rawEsu -ne 'N/A' -and $rawEsu -ne ''
+            $hasPaidEsu = $hasEsu -and ($paidEsuProducts -contains $apiProd)
+            if ($hasEsu)     { $esuDate = $rawEsu }
+            if ($hasPaidEsu) { $osDisplayName = "$($osItem.OS) *" }
+
             if ($rawEol -and $rawEol -ne $false -and $rawEol -ne 'False' -and $rawEol -ne 'N/A') {
-                # Date connue
                 try {
                     $eolDate      = [DateTime]::Parse($rawEol)
                     $daysUntilEoL = ($eolDate - (Get-Date)).Days
@@ -35,10 +49,6 @@
                     }
                 } catch { $eolDateDisplay = $rawEol }
             } else {
-                # Clé en DB mais eol_date = False → date non annoncée
-                # On n'écrase PAS $primaryStatus : les compteurs EoL_Status sont la source
-                # de vérité (calculés par MAD-EoL.ps1). Si les machines sont EOL selon la
-                # base, $primaryStatus reste 'EOL' même sans date publiée.
                 $eolDateDisplay = 'No date announced'
                 $daysInfo       = 'No date announced'
                 if ($primaryStatus -eq 'Unknown' -or $primaryStatus -eq 'Supported') {
@@ -46,13 +56,32 @@
                 }
             }
         } elseif ($primaryStatus -eq 'Unknown') {
-            # OS absent de la DB : statut inconnu, pas de date
             $eolDateDisplay = 'Unknown'
             $daysInfo       = ''
         }
 
+        # Si eol_date depassee mais extended_support encore valide (payant ou LTS gratuit)
+        # -> statut special EOL-ESU affiche en orange
+        if ($primaryStatus -eq 'EOL' -or $primaryStatus -eq 'Supported') {
+            if ($eolInfo) {
+                $rawEolCheck = $eolInfo.eol_date
+                $rawEsuCheck = $eolInfo.extended_support
+                if ($rawEolCheck -and $rawEolCheck -ne $false -and $rawEolCheck -ne 'N/A') {
+                    try {
+                        $eolPast = ([DateTime]::Parse($rawEolCheck) - (Get-Date)).Days -lt 0
+                        $esuValid = $rawEsuCheck -and $rawEsuCheck -ne $false -and
+                                    $rawEsuCheck -ne 'False' -and $rawEsuCheck -ne 'N/A' -and $rawEsuCheck -ne '' -and
+                                    ([DateTime]::Parse($rawEsuCheck) - (Get-Date)).Days -gt 0
+                        if ($eolPast -and $esuValid) {
+                            $primaryStatus = 'EOL-ESU'
+                        }
+                    } catch {}
+                }
+            }
+        }
+
         return [PSCustomObject]@{
-            'OSName'         = $osItem.OS
+            'OSName'         = $osDisplayName
             'Total'          = $osItem.Total
             'EoLDate'        = $eolDateDisplay
             'DaysUntilEoL'   = $daysInfo
@@ -60,8 +89,10 @@
             'Supported'      = $osItem.Supported
             'WarningStatus'  = $osItem.$WarningStatusName
             'EOL'            = $osItem.EOL
+            'EoL_ESU'        = $esuDate
         }
     }
+
     $time = (get-date)
     Write-Verbose "HTML - Generation du rapport final (MultiPage)"
     $htmlParams = @{ TitleText = $ReportTitle; Online = $true; FilePath = $OutputPath }
@@ -767,7 +798,7 @@
             New-HTMLSection -Name 'Computers' -HeaderBackGroundColor teal -HeaderTextAlignment left {
             New-HTMLPanel -Invisible {
                     New-HTMLTableOption -DataStore JavaScript -DateTimeFormat 'yyyy-MM-dd' -ArrayJoin -ArrayJoinString ',' -BoolAsString
-                                New-HTMLText -Text '<div style="margin:8px 0"><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:4px"><b>&#128187; Inactifs depuis :</b><button onclick="adFilterPC(30)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#fff3cd">+30j</button><button onclick="adFilterPC(60)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#ffd8a8">+60j</button><button onclick="adFilterPC(90)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#f8d7da">+90j</button><button onclick="adFilterPC(180)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#d9534f;color:white">+180j</button><button onclick="adFilterPC(365)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#7b1818;color:white">+1 an</button><input id="pcCustom" type="number" min="1" max="9999" placeholder="jours" style="width:65px;padding:3px 6px;border-radius:4px;border:1px solid #aaa;font-size:12px;text-align:center"/><button onclick="adCustomPC()" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #0077cc;background:#0077cc;color:white">Appliquer</button></div><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><b>&#128197; Crees depuis :</b><button onclick="adFilterPCC(7)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#d4edda">7j</button><button onclick="adFilterPCC(30)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#b8daff">30j</button><button onclick="adFilterPCC(90)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#80bdff">90j</button><button onclick="adFilterPCC(365)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #004085;background:#004085;color:white">1 an</button><button onclick="adClrPC()" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #999;background:#e9ecef">&#x2716; Effacer</button><span id="pcInfo" style="font-size:12px;color:#555;font-style:italic;margin-left:8px"></span></div></div>'
+                                New-HTMLText -Text '<div style="margin:8px 0"><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:4px"><b>&#128187; Inactifs depuis :</b><button onclick="adFilterPC(30)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#fff3cd">+30j</button><button onclick="adFilterPC(60)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#ffd8a8">+60j</button><button onclick="adFilterPC(90)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#f8d7da">+90j</button><button onclick="adFilterPC(180)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#d9534f;color:white">+180j</button><button onclick="adFilterPC(365)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#7b1818;color:white">+1 an</button><input id="pcCustom" type="number" min="1" max="9999" placeholder="jours" style="width:65px;padding:3px 6px;border-radius:4px;border:1px solid #aaa;font-size:12px;text-align:center"/><button onclick="adCustomPC()" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #0077cc;background:#0077cc;color:white">Appliquer</button></div><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><b>&#128197; Crees depuis :</b><button onclick="adFilterPCC(7)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#d4edda">7j</button><button onclick="adFilterPCC(30)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#b8daff">30j</button><button onclick="adFilterPCC(90)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #ccc;background:#80bdff">90j</button><button onclick="adFilterPCC(365)" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #004085;background:#004085;color:white">1 an</button><button onclick="adClrPC()" style="border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px;border:1px solid #999;background:#e9ecef">&#x2716; Effacer</button><span id="pcInfo" style="font-size:12px;color:#555;font-style:italic;margin-left:8px"></span></div></div><script>var adDT_pc=null;document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){var ep=document.getElementById("adPcTable");if(ep)adDT_pc=$(ep).DataTable();},600);});var adSt_pc=null;function adFilterPC(d){adFilter("inactive",d);}function adFilterPCC(d){adFilter("created",d);}function adCustomPC(){var d=parseInt(document.getElementById("pcCustom").value);if(!isNaN(d)&&d>0)adFilter("inactive",d);else alert("Nombre invalide");}function adClrPC(){adSt_pc=null;if(adDT_pc){adDT_pc.search("").columns().search("").draw();rebuildSB(null);}document.getElementById("pcInfo").textContent="";}function getTable(){if(!adDT_pc){var el=document.getElementById("adPcTable");if(el)adDT_pc=$(el).DataTable();}return adDT_pc;}function adFilter(type,days){var c=new Date();c.setDate(c.getDate()-days);var cs=c.toISOString().split("T")[0];var col=(type==="inactive")?"Last Logon Date":"Created Date";adSt_pc={type:type,days:days,cutoff:cs,col:col};adRun();document.getElementById("pcInfo").textContent=((type==="inactive")?"Inactifs avant":"Crees depuis")+" le "+cs+" ("+days+"j)";}function adRun(){var s=adSt_pc;if(!s)return;var dt=getTable();if(!dt)return;var ci=-1;dt.columns().header().each(function(h,i){if(h.textContent.trim()===s.col)ci=i;});if(ci<0){console.log("Colonne non trouvee:",s.col);return;}$.fn.dataTable.ext.search.push(function(x,data){var v=data[ci];var m=(s.type==="inactive")?(!v||v<s.cutoff):(v&&v>=s.cutoff);return m;});dt.draw();$.fn.dataTable.ext.search.pop();rebuildSB(s);document.getElementById("pcInfo").textContent=((s.type==="inactive")?"Inactifs avant":"Crees depuis")+" le "+s.cutoff+" ("+s.days+"j)";}function rebuildSB(s){var dt=getTable();if(!dt||!dt.searchBuilder||typeof dt.searchBuilder.rebuild!=="function")return;try{if(!s){dt.searchBuilder.rebuild({criteria:[],logic:"AND"});}else{var cond=(s.type==="inactive")?"<":">";dt.searchBuilder.rebuild({criteria:[{condition:cond,data:s.col,origData:s.col,type:"date",value:[s.cutoff]}],logic:"AND"});}}catch(e){console.log("SB err:",e.message);}}document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target&&e.target.id==="pcCustom")adCustomPC();});</script>'
                     New-HTMLTable -DataTable $ComputersTable -DataTableID "adPcTable"  
                 }
             }
@@ -902,6 +933,7 @@
                         
                         New-HTMLTable -DataTable ($lifecycleData | Sort-Object 'Total' -Descending) -PagingLength 20 {
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL'                                   -BackgroundColor '#f8d7da' -Color '#721c24' -Row
+                            New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL-ESU'                               -BackgroundColor '#ffe0b2' -Color '#7f4500' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value $WarningStatusName                     -BackgroundColor '#fff3cd' -Color '#856404' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported'                            -BackgroundColor '#d5f4e6' -Color '#155724' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported (no end of life announced)' -BackgroundColor '#d5f4e6' -Color '#155724' -Row
@@ -1010,6 +1042,7 @@
 
                         New-HTMLTable -DataTable ($lifecycleData | Sort-Object 'Total' -Descending) -PagingLength 20 {
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL'                                   -BackgroundColor '#f8d7da' -Color '#721c24' -Row
+                            New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL-ESU'                               -BackgroundColor '#ffe0b2' -Color '#7f4500' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value $WarningStatusName                     -BackgroundColor '#fff3cd' -Color '#856404' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported'                            -BackgroundColor '#d5f4e6' -Color '#155724' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported (no end of life announced)' -BackgroundColor '#d5f4e6' -Color '#155724' -Row
@@ -1105,6 +1138,7 @@
                             $lifecycleData = $DiversOSDetails | ForEach-Object { Build-LifecycleRow -osItem $_ -WarningStatusName $WarningStatusName }
                             New-HTMLTable -DataTable ($lifecycleData | Sort-Object 'Total' -Descending) -PagingLength 20 {
                                 New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL'                                   -BackgroundColor '#f8d7da' -Color '#721c24' -Row
+                            New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL-ESU'                               -BackgroundColor '#ffe0b2' -Color '#7f4500' -Row
                                 New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value $WarningStatusName                     -BackgroundColor '#fff3cd' -Color '#856404' -Row
                                 New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported'                            -BackgroundColor '#d5f4e6' -Color '#155724' -Row
                                 New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported (no end of life announced)' -BackgroundColor '#d5f4e6' -Color '#155724' -Row

@@ -7,20 +7,34 @@
 
         $eolInfo = Get-OSEoLInfo -OSName $osItem.OS
 
-        # Déterminer le statut principal depuis les compteurs
-        $primaryStatus = 'Unknown'
-        if     ($osItem.EOL -gt 0)                    { $primaryStatus = 'EOL' }
-        elseif ($osItem.$WarningStatusName -gt 0)     { $primaryStatus = $WarningStatusName }
-        elseif ($osItem.Supported -gt 0)              { $primaryStatus = 'Supported' }
+        # Produits ESU PAYANT : statut sur eol_date, nom avec *, colonne EoL_ESU indicative.
+        # Produits LTS GRATUIT (Debian) : statut sur extended_support, pas de *.
+        $paidEsuProducts = @('windows','windows-server','ubuntu','rhel','sles')
 
-        # Construire EoLDate et DaysUntilEoL
+        $primaryStatus = 'Unknown'
+        if     ($osItem.EOL -gt 0)                { $primaryStatus = 'EOL' }
+        elseif ($osItem.$WarningStatusName -gt 0) { $primaryStatus = $WarningStatusName }
+        elseif ($osItem.Supported -gt 0)          { $primaryStatus = 'Supported' }
+
         $eolDateDisplay = 'Unknown'
         $daysInfo       = ''
+        $esuDate        = ''
+        $osDisplayName  = $osItem.OS
 
         if ($eolInfo) {
-            $rawEol = $eolInfo.eol_date
+            $rawEol  = $eolInfo.eol_date
+            $rawEsu  = $eolInfo.extended_support
+            $apiProd = $eolInfo.api_product
+
+            # EoL_ESU renseigné pour tous les OS avec extended_support (payant ou gratuit).
+            # * ajouté uniquement pour les ESU PAYANTS.
+            $hasEsu = $rawEsu -and $rawEsu -ne $false -and
+                      $rawEsu -ne 'False' -and $rawEsu -ne 'N/A' -and $rawEsu -ne ''
+            $hasPaidEsu = $hasEsu -and ($paidEsuProducts -contains $apiProd)
+            if ($hasEsu)     { $esuDate = $rawEsu }
+            if ($hasPaidEsu) { $osDisplayName = "$($osItem.OS) *" }
+
             if ($rawEol -and $rawEol -ne $false -and $rawEol -ne 'False' -and $rawEol -ne 'N/A') {
-                # Date connue
                 try {
                     $eolDate      = [DateTime]::Parse($rawEol)
                     $daysUntilEoL = ($eolDate - (Get-Date)).Days
@@ -34,8 +48,6 @@
                     }
                 } catch { $eolDateDisplay = $rawEol }
             } else {
-                # Clé en DB mais eol_date = False → date non annoncée
-                # On n'écrase PAS $primaryStatus : les compteurs sont la source de vérité.
                 $eolDateDisplay = 'No date announced'
                 $daysInfo       = 'No date announced'
                 if ($primaryStatus -eq 'Unknown' -or $primaryStatus -eq 'Supported') {
@@ -47,8 +59,29 @@
             $daysInfo       = ''
         }
 
+        # Si eol_date depassee mais extended_support encore valide
+        # -> statut EOL-ESU (orange), qu'il soit payant ou gratuit (ex: Debian LTS)
+        # Le * dans le nom est reserve aux ESU payants (gere par $hasPaidEsu plus haut)
+        if ($primaryStatus -eq 'EOL' -or $primaryStatus -eq 'Supported') {
+            if ($eolInfo) {
+                $rawEolCheck = $eolInfo.eol_date
+                $rawEsuCheck = $eolInfo.extended_support
+                if ($rawEolCheck -and $rawEolCheck -ne $false -and $rawEolCheck -ne 'N/A') {
+                    try {
+                        $eolPast = ([DateTime]::Parse($rawEolCheck) - (Get-Date)).Days -lt 0
+                        $esuValid = $rawEsuCheck -and $rawEsuCheck -ne $false -and
+                                    $rawEsuCheck -ne 'False' -and $rawEsuCheck -ne 'N/A' -and $rawEsuCheck -ne '' -and
+                                    ([DateTime]::Parse($rawEsuCheck) - (Get-Date)).Days -gt 0
+                        if ($eolPast -and $esuValid) {
+                            $primaryStatus = 'EOL-ESU'
+                        }
+                    } catch {}
+                }
+            }
+        }
+
         return [PSCustomObject]@{
-            'OSName'         = $osItem.OS
+            'OSName'         = $osDisplayName
             'Total'          = $osItem.Total
             'EoLDate'        = $eolDateDisplay
             'DaysUntilEoL'   = $daysInfo
@@ -56,8 +89,10 @@
             'Supported'      = $osItem.Supported
             'WarningStatus'  = $osItem.$WarningStatusName
             'EOL'            = $osItem.EOL
+            'EoL_ESU'        = $esuDate
         }
     }
+
     $time = (get-date)
     Write-Verbose "HTML - Generation du rapport final (OnePage)"
     $htmlParams = @{ TitleText = $ReportTitle; Online = $true; FilePath = $OutputPath }
@@ -733,6 +768,7 @@
                         
                         New-HTMLTable -DataTable ($lifecycleData | Sort-Object 'Total' -Descending) -PagingLength 20 {
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL'                                   -BackgroundColor '#f8d7da' -Color '#721c24' -Row
+                            New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL-ESU'                               -BackgroundColor '#ffe0b2' -Color '#7f4500' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value $WarningStatusName                     -BackgroundColor '#fff3cd' -Color '#856404' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported'                            -BackgroundColor '#d5f4e6' -Color '#155724' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported (no end of life announced)' -BackgroundColor '#d5f4e6' -Color '#155724' -Row
@@ -820,6 +856,7 @@
                         
                         New-HTMLTable -DataTable ($lifecycleData | Sort-Object 'Total' -Descending) -PagingLength 20 {
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL'                                   -BackgroundColor '#f8d7da' -Color '#721c24' -Row
+                            New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'EOL-ESU'                               -BackgroundColor '#ffe0b2' -Color '#7f4500' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value $WarningStatusName                     -BackgroundColor '#fff3cd' -Color '#856404' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported'                            -BackgroundColor '#d5f4e6' -Color '#155724' -Row
                             New-TableCondition -Name 'PrimaryStatus' -ComparisonType string -Operator eq -Value 'Supported (no end of life announced)' -BackgroundColor '#d5f4e6' -Color '#155724' -Row

@@ -104,7 +104,7 @@ if ($ClientList.Count -gt 0) {
             $group  = $_.Group
             $supported = [int](@($group | Where-Object { $_.EoL_Status -eq 'Supported' }).Count)
             $j90       = [int](@($group | Where-Object { $_.EoL_Status -eq $WarningStatusName }).Count)
-            $eol       = [int](@($group | Where-Object { $_.EoL_Status -eq 'EOL' }).Count)
+            $eol       = [int](@($group | Where-Object { ($_.EoL_Status -eq 'EOL' -or $_.EoL_Status -eq 'EOL-ESU') }).Count)
             $unknown   = [int](@($group | Where-Object { $_.EoL_Status -eq 'Unknown' }).Count)
             [pscustomobject]@{
                 OS                  = $osName
@@ -126,7 +126,7 @@ if ($ServerList.Count -gt 0) {
             $group  = $_.Group
             $supported = [int](@($group | Where-Object { $_.EoL_Status -eq 'Supported' }).Count)
             $j90       = [int](@($group | Where-Object { $_.EoL_Status -eq $WarningStatusName }).Count)
-            $eol       = [int](@($group | Where-Object { $_.EoL_Status -eq 'EOL' }).Count)
+            $eol       = [int](@($group | Where-Object { ($_.EoL_Status -eq 'EOL' -or $_.EoL_Status -eq 'EOL-ESU') }).Count)
             $unknown   = [int](@($group | Where-Object { $_.EoL_Status -eq 'Unknown' }).Count)
             [pscustomobject]@{
                 OS                  = $osName
@@ -149,7 +149,7 @@ if ($DiversList.Count -gt 0) {
             $group  = $_.Group
             $supported = [int](@($group | Where-Object { $_.EoL_Status -eq 'Supported' }).Count)
             $j90       = [int](@($group | Where-Object { $_.EoL_Status -eq $WarningStatusName }).Count)
-            $eol       = [int](@($group | Where-Object { $_.EoL_Status -eq 'EOL' }).Count)
+            $eol       = [int](@($group | Where-Object { ($_.EoL_Status -eq 'EOL' -or $_.EoL_Status -eq 'EOL-ESU') }).Count)
             $unknown   = [int](@($group | Where-Object { $_.EoL_Status -eq 'Unknown' }).Count)
             [pscustomobject]@{
                 OS                  = $osName

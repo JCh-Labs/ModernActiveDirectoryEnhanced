@@ -241,14 +241,11 @@ function Get-OSEoLStatus {
     
     $today = Get-Date
 
-    # Vérifier le support étendu d'abord (seulement si c'est une date réelle, pas False/N/A)
+    # Le statut primaire (Supported / J-XX / EOL) est toujours basé sur eol_date.
+    # Le statut EOL-ESU (extended support payant, marqué * dans le nom) est calculé
+    # en aval dans Build-LifecycleRow via $hasPaidEsu.
+    # Ne jamais utiliser extended_support ici : un LTS gratuit (Debian) ne reporte pas la date.
     $eolDateToCheck = $osInfo.eol_date
-    if ($osInfo.extended_support -and
-        $osInfo.extended_support -ne $false -and
-        $osInfo.extended_support -ne 'False' -and
-        $osInfo.extended_support -ne 'N/A') {
-        $eolDateToCheck = $osInfo.extended_support
-    }
 
     # Cas explicite : eol_date = False → pas de date annoncée, OS encore supporté
     if (-not $eolDateToCheck -or $eolDateToCheck -eq $false -or
@@ -485,15 +482,11 @@ function Update-EoLFromAPI {
                     if ($v -is [datetime]) { return $v.ToString('yyyy-MM-dd') }
                     return [string]$v
                 }
-                # FIX: Pour les OS Windows client (hors Server/LTSC/IoT), l'extended_support
-                # correspond aux ESU (Extended Security Updates) payants de Microsoft.
-                # Ces ESU ne doivent PAS influencer le statut affiché (Supported/EOL),
-                # car la grande majorité des machines n'ont pas souscrit à ce programme payant.
-                # On stocke la valeur pour information mais on la neutralise pour les clients Windows.
+                # extended_support est conservé tel quel depuis l'API dans la DB.
+                # La distinction payant (Windows ESU, Ubuntu ESM, RHEL ELS, SLES LTSS)
+                # vs gratuit (Debian LTS) est gérée au niveau du calcul de statut
+                # dans Get-ComputerEoLInfo et Build-LifecycleRow.
                 $extSupport = (& $toIsoRaw $cycle.extendedSupport)
-                if ($product -eq 'windows' -and $osType -eq 'client') {
-                    $extSupport = $null
-                }
                 $osEntry = @{
                     product_name     = $productName
                     version          = $cycle.cycle
@@ -555,6 +548,8 @@ function Update-EoLFromAPI {
                     }
                     # Normaliser aussi les valeurs stockées pour éviter les rechargements futurs
                     $osEntry.eol_date         = $newEol
+                    # extended_support conservé depuis l'API (payant ou gratuit).
+                    # La logique payant/gratuit est gérée au niveau du calcul de statut.
                     $osEntry.extended_support = if ($newExt -eq '') { $null } else { $newExt }
                     # Supprimer l'ancienne clé (qu'elle soit l'ancienne ou la même)
                     $database.os_database.PSObject.Properties.Remove($existingKey)
@@ -648,11 +643,14 @@ function Update-EoLFromAPI {
                 if ($exists -eq $false) {
                     $existingInfo = Get-OSEoLInfo -OSName $os
                     if ($existingInfo -and $existingInfo.eol_date) {
-                        $database.os_database | Add-Member -MemberType NoteProperty -Name $os -Value $existingInfo -Force
+                        # FIX: Ne pas créer de doublon dans la DB sous le nom AD (ex: "Windows 10 22H2")
+                        # alors qu'une entrée canonique existe déjà sous le nom API (ex: "Windows 10-22h2").
+                        # Get-OSEoLInfo résout déjà cet alias à l'exécution via normalisation.
+                        # Ajouter un doublon causerait : deux entrées pour le même OS, et risque de
+                        # réintroduire extended_support corrompu si la logique évolue.
                         Write-Host "    ↪ " -ForegroundColor DarkCyan -NoNewline
                         Write-Host "$os".PadRight(44) -ForegroundColor Gray -NoNewline
-                        Write-Host "alias resolu → eol_date $($existingInfo.eol_date)" -ForegroundColor DarkCyan
-                        $addedCount++
+                        Write-Host "alias resolu → eol_date $($existingInfo.eol_date) (pas de doublon cree)" -ForegroundColor DarkCyan
                         continue
                     }
                 }
@@ -1164,22 +1162,12 @@ function Get-ComputerEoLInfo {
     }
 
     if ($null -ne $baseDate) {
-        # Le STATUT est calculé sur la date effective la plus tardive :
-        # si un extended_support valide existe (ESU/ESM/LTSS), il repousse la date d'expiration réelle.
-        # Cela garantit la cohérence avec Get-OSEoLStatus (utilisé dans PreCheck).
-        # La propriété EoL conserve la eol_date standard (support de base) pour l'affichage du tableau.
+        # Le statut est toujours basé sur eol_date (baseDate).
+        # extended_support ne reporte jamais la date effective : il est uniquement exposé
+        # via EoL_ExtendedType/EoL_ExtendedEnd pour que Build-LifecycleRow affiche
+        # EOL-ESU et * si l'api_product est dans la liste payante (windows, rhel, ubuntu...).
+        # Ainsi un LTS gratuit (Debian) reste EOL sans liste en dur ici.
         $effectiveDate = $baseDate
-        if ($null -ne $extEnd) {
-            $extEntryRaw = if ($key) { $db.os_database.$key.extended_support } else { $null }
-            $isValidExtDate = $extEntryRaw -and
-                              $extEntryRaw -ne $false -and
-                              $extEntryRaw -ne 'False' -and
-                              $extEntryRaw -ne 'N/A' -and
-                              $extEntryRaw -ne ''
-            if ($isValidExtDate -and $extEnd -gt $baseDate) {
-                $effectiveDate = $extEnd
-            }
-        }
 
         $days   = [int]((New-TimeSpan -Start (Get-Date).Date -End $effectiveDate.Date).TotalDays)
         $status = if ($days -lt 0) { 'EOL' } elseif ($days -le $DaysBeforeEoL) { "J-$DaysBeforeEoL" } else { 'Supported' }
