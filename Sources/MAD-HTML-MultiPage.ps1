@@ -1250,9 +1250,10 @@
                         <br> Thanks : Boss Przemyslaw Klys - Module PSWriteHTML- [Evotec](https://evotec.xyz)'
                     } -FontSize 14
                 }         
-        New-HTMLPanel {
-                New-HTMLImage -Source $RightLogo 
-            } 
+                New-HTMLTag -Tag 'img' -Attributes @{ 
+                    src   = $RightLogo
+                    style = "height:100%; width:100%; object-fit:contain;"
+                } -SelfClosing
             }   
         }
 
