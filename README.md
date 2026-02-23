@@ -55,12 +55,12 @@ Use at your own risk
 
 ### Importer le module
 ```powershell
-Import-Module ModernActiveDirectoryEnhanced
+Install-Module ModernActiveDirectoryEnhanced
 ```
 
 ### Vérifier l'import
 ```powershell
-Get-Module ModernActiveDirectoryEnhanced
+Get-Module -ListAvailable ModernActiveDirectoryEnhanced
 ```
 
 ---
