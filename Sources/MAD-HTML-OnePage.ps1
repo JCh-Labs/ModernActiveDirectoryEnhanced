@@ -885,22 +885,24 @@
                     }
                 }
             }   
-            New-HTMLSection -Name 'About' -HeaderBackGroundColor teal -HeaderTextAlignment left {   
+            New-HTMLSection -Name 'About' -HeaderBackGroundColor teal -HeaderTextAlignment left {
                 New-HTMLPanel {
                     New-HTMLList {
                         New-HTMLListItem -Text "Generated date : $time"
-                        New-HTMLListItem -Text 'Modern Active Directory Enhanced _ Version : 2.0.0 _ Release : 02/2026' 
-                        New-HTMLListItem -Text 'Author : JCh Labs<br> 
+                        New-HTMLListItem -Text 'Modern Active Directory Enhanced _ Version : 2.0.0 _ Release : 02/2026'
+                        New-HTMLListItem -Text 'Author : JCh Labs<br>
                         <br> Inspired ModernAD Dakhama Mehdi <br>
                         <br> Inspired ADReportHTLM Bradley Wyatt [thelazyadministrator](https://www.thelazyadministrator.com/)<br>
                         <br> Credit : Thirrey Demon-Barcelo, Mattieu Souin, Mahmoud Hatira, Zouhair sarouti<br>
                         <br> Thanks : Boss Przemyslaw Klys - Module PSWriteHTML- [Evotec](https://evotec.xyz)'
                     } -FontSize 14
-                }         
-                New-HTMLTag -Tag 'img' -Attributes @{ 
-                    src   = $RightLogo
-                    style = "height:100%; width:100%; object-fit:contain;"
-                } -SelfClosing
+                }
+                New-HTMLPanel {
+                    New-HTMLTag -Tag 'img' -Attributes @{
+                        src   = $RightLogo
+                        style = 'height:100%; width:100%; object-fit:contain;'
+                    } -SelfClosing
+                }
             }
         } 
     } 

@@ -516,6 +516,14 @@ if ($PreCheck) {
 
 
 # ============================================================================
+# INITIALISATION DES MODULES REQUIS
+# Placé ICI — après le return du -PreCheck — pour que le PreCheck
+# puisse s'exécuter même si RSAT ou PSWriteHTML sont absents.
+# ============================================================================
+Initialize-ADModule
+Initialize-PSWriteHTMLModule
+
+# ============================================================================
 # DÉBUT DE L'EXÉCUTION
 # ============================================================================
 Write-Banner
@@ -610,6 +618,21 @@ Write-Progress-Custom "Rapport HTML" "Création du fichier"
 	   Sortie HTML
 
 ############################>
+
+# Creer le dossier de sortie s'il n'existe pas
+if (-not (Test-Path $SavePath)) {
+    try {
+        New-Item -ItemType Directory -Path $SavePath -Force | Out-Null
+        Write-Success "Dossier cree : $SavePath"
+    } catch {
+        Write-Host ""
+        Write-Host "  X Impossible de creer le dossier de sortie : $SavePath" -ForegroundColor Red
+        Write-Host "    $($_.Exception.Message)" -ForegroundColor DarkGray
+        Write-Host "    Verifiez le chemin et les permissions, puis relancez." -ForegroundColor Yellow
+        Write-Host ""
+        return
+    }
+}
 
 $OutputPath = $SavePath + '\ADModern.html'
 

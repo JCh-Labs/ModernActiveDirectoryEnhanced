@@ -121,39 +121,71 @@ function LastLogonConvert {
     }
 } #End function LastLogonConvert
 
-#Check for Active Directory Module 
-try {
-    Import-Module ActiveDirectory -ErrorAction Stop
-    Write-Verbose "Module Active Directory charge avec succes"
-} catch {
-    Write-Error "AD RSAT Module is required. Please install it."
-    Write-Error "To install: Install-WindowsFeature RSAT-AD-PowerShell"
-    Write-Error "Details: $($_.Exception.Message)"
-    throw "Operation aborted - AD module not available"
-}
+#region Module Initialization Functions
+# ============================================================================
+# IMPORTANT : ces verifications sont encapsulees dans des fonctions.
+# Elles NE s'executent PAS au dot-sourcing — uniquement quand appelees
+# explicitement par Get-MADReport (apres le bloc -PreCheck).
+# Cela permet au -PreCheck de fonctionner sans RSAT installe.
+# ============================================================================
 
-#Check for ReportHTML Module
-
-if (!(Get-Module -ListAvailable -Name "PSWriteHTML"))
-{
-    # B07 FIX : installation dans le scope utilisateur, avec confirmation et gestion d'erreur
-    Write-Warning-Custom "Module PSWriteHTML absent."
-    Write-Host "  Installation de PSWriteHTML (scope : CurrentUser)..." -ForegroundColor Yellow
+function Initialize-ADModule {
+<#
+.SYNOPSIS
+    Charge le module ActiveDirectory. Leve une exception claire si RSAT est absent.
+.NOTES
+    A appeler UNIQUEMENT apres le bloc -PreCheck dans le psm1.
+#>
     try {
-        Install-Module -Name PSWriteHTML -Scope CurrentUser -Force -AllowClobber -ErrorAction Stop
-        Write-Host "  [OK] PSWriteHTML installe avec succes." -ForegroundColor Green
-        Import-Module PSWriteHTML -ErrorAction Stop
+        Import-Module ActiveDirectory -ErrorAction Stop
+        Write-Verbose "Module Active Directory charge avec succes"
     } catch {
         Write-Host "" 
-        Write-Host "  [ERREUR] Impossible d'installer PSWriteHTML automatiquement." -ForegroundColor Red
-        Write-Host "  Cause : $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "  ✗ Le module ActiveDirectory est requis mais introuvable." -ForegroundColor Red
         Write-Host ""
-        Write-Host "  Installation manuelle :" -ForegroundColor Yellow
-        Write-Host "    Install-Module -Name PSWriteHTML -Scope CurrentUser -Force" -ForegroundColor Cyan
+        Write-Host "  Pour installer RSAT sur Windows Server :" -ForegroundColor Yellow
+        Write-Host "    Install-WindowsFeature RSAT-AD-PowerShell" -ForegroundColor Cyan
         Write-Host ""
-        throw "Module PSWriteHTML requis. Installez-le manuellement puis relancez le rapport."
+        Write-Host "  Pour installer RSAT sur Windows 10/11 :" -ForegroundColor Yellow
+        Write-Host "    Add-WindowsCapability -Online -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0" -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "  Details : $($_.Exception.Message)" -ForegroundColor DarkGray
+        Write-Host ""
+        throw "Operation aborted - AD module not available. Run: Install-WindowsFeature RSAT-AD-PowerShell"
     }
-} else { Import-Module PSWriteHTML -ErrorAction Stop }
+}
+
+function Initialize-PSWriteHTMLModule {
+<#
+.SYNOPSIS
+    Charge PSWriteHTML, l'installe automatiquement si absent.
+.NOTES
+    A appeler UNIQUEMENT apres le bloc -PreCheck dans le psm1.
+#>
+    if (!(Get-Module -ListAvailable -Name "PSWriteHTML")) {
+        # B07 FIX : installation dans le scope utilisateur, avec confirmation et gestion d'erreur
+        Write-Warning-Custom "Module PSWriteHTML absent."
+        Write-Host "  Installation de PSWriteHTML (scope : CurrentUser)..." -ForegroundColor Yellow
+        try {
+            Install-Module -Name PSWriteHTML -Scope CurrentUser -Force -AllowClobber -ErrorAction Stop
+            Write-Host "  [OK] PSWriteHTML installe avec succes." -ForegroundColor Green
+            Import-Module PSWriteHTML -ErrorAction Stop
+        } catch {
+            Write-Host ""
+            Write-Host "  [ERREUR] Impossible d'installer PSWriteHTML automatiquement." -ForegroundColor Red
+            Write-Host "  Cause : $($_.Exception.Message)" -ForegroundColor Red
+            Write-Host ""
+            Write-Host "  Installation manuelle :" -ForegroundColor Yellow
+            Write-Host "    Install-Module -Name PSWriteHTML -Scope CurrentUser -Force" -ForegroundColor Cyan
+            Write-Host ""
+            throw "Module PSWriteHTML requis. Installez-le manuellement puis relancez le rapport."
+        }
+    } else {
+        Import-Module PSWriteHTML -ErrorAction Stop
+    }
+}
+
+#endregion Module Initialization Functions
 
 #Array of default Security Groups
 $DefaultSGs = @()

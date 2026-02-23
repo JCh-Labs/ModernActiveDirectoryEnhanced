@@ -75,12 +75,22 @@ git clone https://github.com/JCh-Labs/Modern_ActiveDirectoryEnhanced/Modern_Acti
 
 ### Importer le module
 ```powershell
-Import-Module .\Modern_ActiveDirectory_Enhanced\ModernActiveDirectoryEnhanced.psd1
+Import-Module .\ModernActiveDirectoryEnhanced.psd1
 ```
 ### Vérifier l'import
 ```powershell
 Get-Module ModernActiveDirectoryEnhanced
 ```
+
+### Installation des Modules RSAT
+Vous pouvez les isntaller en ligne de commande ou via IHM
+[IHM] RSAT : Outils Active Directory = > IHM : Parametres > Applications > Fonctionnalites facultatives > Ajouter > RSAT : services de domaine Active Directory et LDAP
+[IHM] RSAT : Console de gestion des GPO (GPMC) = > IHM : Parametres > Applications > Fonctionnalites facultatives > Ajouter > RSAT : Gestion des stratégies de groupe
+
+[CommandLine_WindowsServer] RSAT : Outils Active Directory = > Install-WindowsFeature RSAT-AD-Tools
+[CommandLine_WindowsServer] RSAT : Console de gestion des GPO (GPMC) = > Install-WindowsFeature GPMC
+
+
 
 ```
 ```

@@ -7,7 +7,6 @@ $script:EoLDatabaseMaxAgeDays = 90
 
 function Test-RequiredModules {
     $requiredModules = @(
-        @{ Name = 'ActiveDirectory'; MinVersion = $null; Critical = $true },
         @{ Name = 'PSWriteHTML'; MinVersion = [version]'0.0.180'; Critical = $true },
         @{ Name = 'PSWriteExcel'; MinVersion = [version]'0.1.15'; Critical = $false }
     )
@@ -174,34 +173,62 @@ function Get-EstimatedExecutionTime {
 
 function Test-DiskSpace {
     param([string]$SavePath, [int]$EstimatedSizeMB = 50)
-    
+
     try {
+        # Verifier si le dossier existe
         if (-not (Test-Path $SavePath)) {
-            $SavePath = Split-Path $SavePath -Parent
-            if (-not $SavePath) { $SavePath = $env:TEMP }
+            $parent = Split-Path $SavePath -Parent
+            if ($parent -and (Test-Path $parent)) {
+                # Parent existe : le dossier sera cree automatiquement
+                $pathStatus  = "CREATABLE"
+                $checkPath   = $parent
+            } else {
+                # Ni le dossier ni son parent n'existent : erreur bloquante
+                return [PSCustomObject]@{
+                    HasSpace    = $false
+                    PathExists  = $false
+                    PathStatus  = "INVALID"
+                    AvailableGB = 0
+                    AvailableMB = 0
+                    RequiredMB  = $EstimatedSizeMB
+                    Drive       = "N/A"
+                    Message     = "Chemin invalide - dossier et parent introuvables : $SavePath"
+                }
+            }
+        } else {
+            $pathStatus = "OK"
+            $checkPath  = $SavePath
         }
-        
-        $drive = (Get-Item $SavePath).PSDrive
-        
+
+        $drive = (Get-Item $checkPath).PSDrive
+
         if ($drive) {
             $availableGB = [math]::Round($drive.Free / 1GB, 2)
             $availableMB = [math]::Round($drive.Free / 1MB, 0)
-            $hasSpace = $availableMB -gt ($EstimatedSizeMB + $script:MinDiskSpaceMB)
-            $message = if ($hasSpace) { "Espace disponible: $availableGB GB" } else { "Espace insuffisant: $availableGB GB disponible, $EstimatedSizeMB MB requis" }
-            
+            $hasSpace    = $availableMB -gt ($EstimatedSizeMB + $script:MinDiskSpaceMB)
+            $message     = if (-not $hasSpace) {
+                "Espace insuffisant: $availableGB GB disponible, $EstimatedSizeMB MB requis"
+            } elseif ($pathStatus -eq "CREATABLE") {
+                "Espace OK ($availableGB GB) - dossier sera cree : $SavePath"
+            } else {
+                "Espace disponible: $availableGB GB"
+            }
+
             return [PSCustomObject]@{
-                HasSpace = $hasSpace
+                HasSpace    = $hasSpace
+                PathExists  = ($pathStatus -eq "OK")
+                PathStatus  = $pathStatus
                 AvailableGB = $availableGB
                 AvailableMB = $availableMB
-                RequiredMB = $EstimatedSizeMB
-                Drive = $drive.Name
-                Message = $message
+                RequiredMB  = $EstimatedSizeMB
+                Drive       = $drive.Name
+                Message     = $message
             }
         } else {
-            return [PSCustomObject]@{ HasSpace = $true; Message = "Impossible de verifier l'espace disque" }
+            return [PSCustomObject]@{ HasSpace = $true; PathExists = $true; PathStatus = "OK"; Message = "Impossible de verifier l'espace disque" }
         }
     } catch {
-        return [PSCustomObject]@{ HasSpace = $true; Message = "Verification espace disque ignoree" }
+        return [PSCustomObject]@{ HasSpace = $true; PathExists = $true; PathStatus = "OK"; Message = "Verification espace disque ignoree" }
     }
 }
 
@@ -350,7 +377,7 @@ function Test-RSATFeatures {
             CapabilityName = 'Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0'
             FriendlyName   = 'RSAT : Console de gestion des GPO (GPMC)'
             CmdletProbe    = 'Get-GPO'
-            Critical       = $false
+            Critical       = $true
             InstallServer  = 'Install-WindowsFeature GPMC'
             InstallClient  = 'Add-WindowsCapability -Online -Name Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0'
             InstallAlt     = 'Parametres > Applications > Fonctionnalites facultatives > Ajouter > RSAT : Gestion des stratégies de groupe'
@@ -559,6 +586,7 @@ function Invoke-ADReportPreCheck {
     Write-Host "  💻 ENVIRONNEMENT" -ForegroundColor White
     Write-Host "  ─────────────────────────────────────────────────────────────" -ForegroundColor DarkGray
 
+    # ── 1. PowerShell ───────────────────────────────────────────────────────────
     $psCheck = Test-PowerShellVersion
     if ($psCheck.IsCompatible) {
         _PCStatus "✓" "PowerShell" $psCheck.Version "Green"
@@ -567,6 +595,7 @@ function Invoke-ADReportPreCheck {
         _PCStatus "✗" "PowerShell" "$($psCheck.Version)  ← requis >= 5.1" "Red"
     }
 
+    # ── 2 & 3. Modules PowerShell (PSWriteHTML, PSWriteExcel) ──────────────────
     $moduleCheck = Test-RequiredModules
     foreach ($module in $moduleCheck.Modules) {
         switch ($module.Status) {
@@ -575,11 +604,12 @@ function Invoke-ADReportPreCheck {
             "MISSING"     {
                 if ($module.Critical) { $overallStatus = $false; $errors += $module.Message }
                 _PCStatus "✗" $module.ModuleName "Non installe" "Red"
+                _PCDetail "Commande d'installation : Install-Module $($module.ModuleName) -Scope CurrentUser -Force" "DarkYellow"
             }
         }
     }
 
-    # ── RSAT Features ──────────────────────────────────────────────────────────
+    # ── 4 & 5. RSAT — Active Directory et GPMC ─────────────────────────────────
     $rsatCheck = Test-RSATFeatures
     if (-not $rsatCheck.IsAdmin) {
         _PCStatus "⚠" "RSAT (verification)" "Droits admin requis pour controle complet — fallback cmdlet" "Yellow"
@@ -597,7 +627,7 @@ function Invoke-ADReportPreCheck {
                     _PCStatus "✗" $feat.FriendlyName "Non installe  [CRITIQUE]" "Red"
                 } else {
                     $warnings += "$($feat.FriendlyName) absent — section GPO désactivée"
-                    _PCStatus "⚠" $feat.FriendlyName "Non installe  (GPO désactivé)" "Yellow"
+                    _PCStatus "⚠" $feat.FriendlyName "Non installe  (optionnel)" "Yellow"
                 }
                 if ($feat.InstallCmd) {
                     _PCDetail "Commande d'installation : $($feat.InstallCmd)" "DarkYellow"
@@ -613,7 +643,52 @@ function Invoke-ADReportPreCheck {
         }
     }
 
+    # ── 6. Module ActiveDirectory (consequence directe de RSAT-AD-Tools) ────────
+    $adModule = Get-Module -ListAvailable -Name 'ActiveDirectory' | Sort-Object Version -Descending | Select-Object -First 1
+    if ($adModule) {
+        _PCStatus "✓" "Module ActiveDirectory" "v$($adModule.Version)  (fourni par RSAT)" "Green"
+    } else {
+        $overallStatus = $false
+        $errors += "Module ActiveDirectory introuvable — RSAT-AD-Tools requis"
+        _PCStatus "✗" "Module ActiveDirectory" "Non disponible  [CRITIQUE]" "Red"
+        _PCDetail "Ce module est installe automatiquement avec RSAT-AD-Tools" "DarkYellow"
+    }
+
     Write-Host ""
+
+    # ── ARRET ANTICIPÉ si RSAT critique absent — inutile de tester les permissions AD
+    # si les cmdlets AD n'existent même pas sur cette machine.
+    if ($errors.Count -gt 0) {
+        Write-Host "  #=======================================================================" -ForegroundColor DarkCyan
+        Write-Host ""
+        Write-Host "  ✗ ARRET — conditions requises non satisfaites" -ForegroundColor Red
+        foreach ($e in $errors) { Write-Host "      ▪ $e" -ForegroundColor Red }
+        Write-Host ""
+        Write-Host "  Corrigez les erreurs ci-dessus avant de relancer le PreCheck." -ForegroundColor DarkGray
+        Write-Host ""
+        Write-Host "  #=======================================================================" -ForegroundColor DarkCyan
+        Write-Host ""
+        return [PSCustomObject]@{
+            OverallStatus        = $false
+            CanProceed           = $false
+            Warnings             = $warnings
+            Errors               = $errors
+            PowerShell           = $psCheck
+            Modules              = $moduleCheck
+            RSAT                 = $rsatCheck
+            Permissions          = $null
+            DiskSpace            = $null
+            ObjectCounts         = $null
+            OUDepth              = $null
+            TimeEstimate         = $null
+            EoLStatus            = $null
+            OSCheck              = $null
+            Recommendations      = @()
+            ComputedSearchParams = ""
+            ComputedScopeParam   = ""
+            Timestamp            = Get-Date
+        }
+    }
 
     # ── 2. PERMISSIONS & DISQUE ────────────────────────────────────────────────
     Write-Host "  🔑 PERMISSIONS & RESSOURCES" -ForegroundColor White
