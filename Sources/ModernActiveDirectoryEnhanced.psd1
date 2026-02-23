@@ -2,20 +2,20 @@
 
 # -------------------------------------------------------------------
 # MODULE MANIFEST – ModernActiveDirectoryEnhanced
-# Version : 1.9.9.03
+# Version : 1.9.9.04
 # Author  : JCh – JCh Labs
 # Fork of Modern Active Directory by Mehdi Dakhama
 # -------------------------------------------------------------------
 
 RootModule    = 'ModernActiveDirectoryEnhanced.psm1'
-ModuleVersion = '1.9.9.03'
+ModuleVersion = '1.9.9.04'
 GUID          = 'd3f4c1f0-2a4b-4c9f-9f0d-8b7e3b0c4e12'
 
 Author      = 'JCh'
 CompanyName = 'JCh Labs'
 Copyright   = '(c) 2026 JCh. Based on Modern_ActiveDirectory by Mehdi Dakhama.'
 
-Description = 'Enhanced fork of Modern Active Directory (original by Mehdi Dakhama / Alphorm). Adds a complete End-of-Life tracking engine, refactored structure, and updated documentation.'
+Description = 'Enhanced fork of ModernActiveDirectory.'
 
 PowerShellVersion = '5.1'
 
@@ -54,6 +54,8 @@ PrivateData = @{
 * New: External JSON database (eol-database.json) with API sync via endoflife.date
 * New: Update-ADEoLDatabase / Update-EoL for database refresh
 * New: PreCheck-Functions.ps1 for pre-execution validation
+* New: Dashboard
+* New: No HarCode
 * Removed legacy code signature block
 * Cleaned and refactored module structure
 '@
