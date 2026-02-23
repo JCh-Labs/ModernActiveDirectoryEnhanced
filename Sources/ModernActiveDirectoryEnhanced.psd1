@@ -2,13 +2,13 @@
 
 # -------------------------------------------------------------------
 # MODULE MANIFEST – ModernActiveDirectoryEnhanced
-# Version : 1.9.9.05
+# Version : 1.9.9.06
 # Author  : JCh – JCh Labs
 # Fork of Modern Active Directory by Mehdi Dakhama
 # -------------------------------------------------------------------
 
 RootModule    = 'ModernActiveDirectoryEnhanced.psm1'
-ModuleVersion = '1.9.9.05'
+ModuleVersion = '1.9.9.06'
 GUID          = 'd3f4c1f0-2a4b-4c9f-9f0d-8b7e3b0c4e12'
 
 Author      = 'JCh'
