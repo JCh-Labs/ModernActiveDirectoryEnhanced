@@ -84,11 +84,14 @@ Get-Module ModernActiveDirectoryEnhanced
 
 ### Installation des Modules RSAT
 Vous pouvez les isntaller en ligne de commande ou via IHM
-- [IHM] RSAT : Outils Active Directory = > IHM : Parametres > Applications > Fonctionnalites facultatives > Ajouter > RSAT : services de domaine Active Directory et LDAP
-- [IHM] RSAT : Console de gestion des GPO (GPMC) = > IHM : Parametres > Applications > Fonctionnalites facultatives > Ajouter > RSAT : Gestion des stratégies de groupe
 
-- [CommandLine_WindowsServer] RSAT : Outils Active Directory = > Install-WindowsFeature RSAT-AD-Tools
-- [CommandLine_WindowsServer] RSAT : Console de gestion des GPO (GPMC) = > Install-WindowsFeature GPMC
+#### RSAT : Outils Active Directory
+- [IHM] Parametres > Applications > Fonctionnalites facultatives > Ajouter > RSAT : services de domaine Active Directory et LDAP
+- [CommandLine_WindowsServer] Install-WindowsFeature RSAT-AD-Tools
+
+#### RSAT : Console de gestion des GPO (GPMC)
+- [IHM] Parametres > Applications > Fonctionnalites facultatives > Ajouter > RSAT : Gestion des stratégies de groupe
+- [CommandLine_WindowsServer]  Install-WindowsFeature GPMC
 
 
 ```
