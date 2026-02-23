@@ -485,12 +485,21 @@ function Update-EoLFromAPI {
                     if ($v -is [datetime]) { return $v.ToString('yyyy-MM-dd') }
                     return [string]$v
                 }
+                # FIX: Pour les OS Windows client (hors Server/LTSC/IoT), l'extended_support
+                # correspond aux ESU (Extended Security Updates) payants de Microsoft.
+                # Ces ESU ne doivent PAS influencer le statut affiché (Supported/EOL),
+                # car la grande majorité des machines n'ont pas souscrit à ce programme payant.
+                # On stocke la valeur pour information mais on la neutralise pour les clients Windows.
+                $extSupport = (& $toIsoRaw $cycle.extendedSupport)
+                if ($product -eq 'windows' -and $osType -eq 'client') {
+                    $extSupport = $null
+                }
                 $osEntry = @{
                     product_name     = $productName
                     version          = $cycle.cycle
                     type             = $osType
                     eol_date         = (& $toIsoRaw $cycle.eol)
-                    extended_support = (& $toIsoRaw $cycle.extendedSupport)
+                    extended_support = $extSupport
                     api_product      = $product
                     api_cycle        = $cycle.cycle
                 }
